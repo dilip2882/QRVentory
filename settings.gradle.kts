@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "QRVentory"
 include(":app")
- 
+include(":core")
+include(":core:presentation")
+include(":core:data")
+include(":core:domain")
+include(":core:mylibrary")
