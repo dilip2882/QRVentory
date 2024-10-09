@@ -3,9 +3,9 @@ The Inventory Management App helps users manage devices through QR code integrat
 
 ## Features
 
-1. **Device Addition via QR Code**
-   - Scan QR codes to add devices with unique information.
-
+1. **QR Code Generation**
+   - Generate QR codes for new devices without existing codes.
+   -
 2. **Device Information Retrieval**
    - Retrieve device details by scanning its QR code.
 
@@ -15,10 +15,7 @@ The Inventory Management App helps users manage devices through QR code integrat
 4. **Device Management**
    - Update details, mark devices as unavailable, or decommission them.
 
-5. **QR Code Generation**
-   - Generate QR codes for new devices without existing codes.
-
-6. **Offline Functionality**
+5. **Offline Functionality**
    - Cache device details for offline access.
 
 ## Core Technologies

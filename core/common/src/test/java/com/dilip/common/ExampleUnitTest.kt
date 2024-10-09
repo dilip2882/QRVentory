@@ -1,4 +1,4 @@
-package com.dilip.mylibrary
+package com.dilip.common
 
 import org.junit.Test
 

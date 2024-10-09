@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.dilip.mylibrary"
+    namespace = "com.dilip.common"
     compileSdk = 34
 
     defaultConfig {
