@@ -2,7 +2,6 @@ package com.dilip.qrventory.navigation
 
 object Graph {
     const val RootGraph = "rootGraph"
-    const val SyncGraph = "SyncGraph"
     const val MainScreenGraph = "mainScreenGraph"
     const val SettingsGraph = "settingsGraph"
     const val DevicesGraph = "devicesGraph"

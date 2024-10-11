@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -30,15 +32,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
 
     implementation(project(":core:common"))
 
+    implementation(libs.kotlinx.coroutines.core)
+
+    implementation(libs.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
