@@ -15,8 +15,8 @@ android {
         applicationId = "com.dilip.qrventory"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.compileSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = AndroidConfig.versionCode
+        versionName = AndroidConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -32,6 +32,8 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -54,9 +56,15 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:presentation"))
+
 
     implementation(libs.androidx.appcompat)
     implementation(libs.core.ktx)
+    implementation(libs.androidx.work)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose.android)

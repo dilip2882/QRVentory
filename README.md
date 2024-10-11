@@ -5,7 +5,7 @@ The Inventory Management App helps users manage devices through QR code integrat
 
 1. **QR Code Generation**
    - Generate QR codes for new devices without existing codes.
-   -
+
 2. **Device Information Retrieval**
    - Retrieve device details by scanning its QR code.
 

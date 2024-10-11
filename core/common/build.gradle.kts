@@ -8,9 +8,8 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 26
+        minSdk = libs.versions.minSdk.get().toInt()
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -30,10 +29,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 dependencies {
-
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.core.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose.android)
 }

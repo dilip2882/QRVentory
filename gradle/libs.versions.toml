@@ -30,6 +30,9 @@ appcompat = "1.7.0"
 material = "1.12.0"
 core-splashscreen = "1.0.1"
 
+googleScanner = "16.1.0"
+playServices = "18.5.0"
+
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -82,6 +85,11 @@ androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+
+# ML-kit
+google-scanner = { group = "com.google.android.gms", name = "play-services-code-scanner", version.ref = "googleScanner" }
+play-services = { group = "com.google.android.gms", name = "play-services-base", version.ref = "playServices" }
+
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
