@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!--    <meta-data-->
+    <!--        android:name="com.google.mlkit.vision.DEPENDENCIES"-->
+    <!--        android:value="barcode" />-->
+    <!--    &lt;!&ndash; To use multiple models: android:value="barcode,model2,model3" &ndash;&gt;-->
+
     <application
         android:name=".QRVentoryApplication"
         android:allowBackup="true"

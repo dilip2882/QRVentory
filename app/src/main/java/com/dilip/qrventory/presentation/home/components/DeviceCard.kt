@@ -10,13 +10,24 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.dilip.qrventory.presentation.home.HomeViewModel
 
 @Composable
 fun DeviceCard(navController: NavController) {
+
+    val viewModel: HomeViewModel = hiltViewModel()
+    val state = viewModel.state.collectAsState()
+    val context = LocalContext.current
+//    val cameraPermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -27,15 +38,27 @@ fun DeviceCard(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-            Text(text = "No devices Found")
+            Text(text = state.value.details)
             Spacer(modifier = Modifier.size(10.dp))
             Button(
-                onClick = {
-                    navController.navigate(route = TODO())
-                },
+                onClick = viewModel::startScanning
             ) {
-                Text("Scan Device")
+                Text("Scan QR")
             }
+//            Spacer(modifier = Modifier.height(10.dp))
+//
+//            Button(
+//                onClick = {
+//                    cameraPermissionState.launchPermissionRequest()
+//                }
+//            ) {
+//                Text(text = "Camera Permission")
+//            }
+//
+//            Spacer(modifier = Modifier.height(10.dp))
+//
+//            CameraPreview()
+
         }
     }
 }

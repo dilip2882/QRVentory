@@ -39,6 +39,10 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
 
+//    implementation(libs.gpsCoroutines)
+//    implementation(libs.play-services)
+
+
     // Compose
     implementation(libs.bundles.compose.android)
     implementation(libs.coil.compose)

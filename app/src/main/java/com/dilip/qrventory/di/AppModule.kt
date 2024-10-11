@@ -4,6 +4,10 @@ import android.app.Application
 import android.content.Context
 import com.dilip.data.repository.PreferencesDatastore
 import com.dilip.domain.repository.PreferencesRepository
+import com.google.mlkit.vision.barcode.common.Barcode
+import com.google.mlkit.vision.codescanner.GmsBarcodeScanner
+import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
+import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import com.komu.sekia.di.AppCoroutineScope
 import dagger.Module
 import dagger.Provides
@@ -19,6 +23,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
     @Provides
+    @Singleton
     fun provideAppContext(@ApplicationContext context: Context) = context
 
     @Provides
@@ -28,6 +33,20 @@ object AppModule {
             override val coroutineContext =
                 SupervisorJob() + Dispatchers.Main.immediate + CoroutineName("App")
         }
+    }
+
+    @Provides
+    @Singleton
+    fun providesOptions(): GmsBarcodeScannerOptions {
+        return GmsBarcodeScannerOptions.Builder()
+            .setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideScanner(context: Context, options: GmsBarcodeScannerOptions): GmsBarcodeScanner {
+        return GmsBarcodeScanning.getClient(context, options)
     }
 
     @Provides

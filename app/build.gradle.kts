@@ -61,7 +61,6 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:presentation"))
 
-
     implementation(libs.androidx.appcompat)
     implementation(libs.core.ktx)
     implementation(libs.androidx.work)
@@ -74,6 +73,11 @@ dependencies {
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.google.scanner)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.play.services.mlkit.barcode.scanning)
+    implementation(libs.firebase.crashlytics.buildtools)
 
     ksp(libs.hilt.compiler)
 
