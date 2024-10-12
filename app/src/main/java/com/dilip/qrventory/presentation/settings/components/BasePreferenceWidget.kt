@@ -30,8 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.komu.presentation.settings.components.LocalPreferenceHighlighted
-import com.komu.presentation.settings.components.LocalPreferenceMinHeight
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 

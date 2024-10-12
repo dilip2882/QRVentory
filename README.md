@@ -47,7 +47,7 @@ The Inventory Management App helps users manage devices through QR code integrat
 
 ## TODO
 
-- [ ] Implement QR code scanning functionality.
+- [x] Implement QR code scanning functionality.
 - [ ] Create device addition and retrieval logic.
 - [ ] Design inventory overview UI.
 - [ ] Implement device management features.

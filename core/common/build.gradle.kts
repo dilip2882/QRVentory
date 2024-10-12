@@ -35,11 +35,13 @@ android {
 }
 
 dependencies {
+    // for serialization
     implementation(libs.bundles.ktor)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
+    
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose.android)
 }

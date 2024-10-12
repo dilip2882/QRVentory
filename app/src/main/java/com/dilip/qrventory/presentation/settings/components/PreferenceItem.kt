@@ -1,4 +1,4 @@
-package com.komu.presentation.settings.components
+package com.dilip.qrventory.presentation.settings.components
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.structuralEqualityPolicy

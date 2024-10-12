@@ -13,10 +13,10 @@ android {
 
     defaultConfig {
         applicationId = "com.dilip.qrventory"
-        minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.compileSdk.get().toInt()
-        versionCode = AndroidConfig.versionCode
-        versionName = AndroidConfig.versionName
+        minSdk = ProjectConfig.minSdk
+        targetSdk = ProjectConfig.targetSdk
+        versionCode = ProjectConfig.versionCode
+        versionName = ProjectConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -61,10 +61,14 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:presentation"))
 
+    // google scanner using lens
+    implementation(libs.google.scanner)
+
     implementation(libs.androidx.appcompat)
     implementation(libs.core.ktx)
     implementation(libs.androidx.work)
     implementation(libs.lifecycle.runtime.ktx)
+
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose.android)
     implementation(libs.coil.compose)
@@ -73,12 +77,6 @@ dependencies {
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
-    implementation(libs.google.scanner)
-    implementation(libs.androidx.camera.view)
-    implementation(libs.androidx.camera.lifecycle)
-    implementation(libs.play.services.mlkit.barcode.scanning)
-    implementation(libs.firebase.crashlytics.buildtools)
-
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)

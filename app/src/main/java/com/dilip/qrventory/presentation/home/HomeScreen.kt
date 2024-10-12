@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.komu.presentation.home.components.DeviceCard
+import com.dilip.qrventory.presentation.home.components.DeviceCard
 
 @Composable
 fun HomeScreen(
@@ -25,7 +25,6 @@ fun HomeScreen(
     val viewModel: HomeViewModel = hiltViewModel()
     val state = viewModel.state.collectAsState()
     val context = LocalContext.current
-
 
     LazyColumn(
         modifier = Modifier

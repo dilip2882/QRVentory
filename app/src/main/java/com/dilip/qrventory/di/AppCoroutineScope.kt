@@ -1,4 +1,4 @@
-package com.komu.sekia.di
+package com.dilip.qrventory.di
 
 import kotlinx.coroutines.CoroutineScope
 

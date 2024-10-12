@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace = "com.dilip.presentation"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = ProjectConfig.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -39,16 +39,9 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
 
-//    implementation(libs.gpsCoroutines)
-//    implementation(libs.play-services)
-
-
     // Compose
+    implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose.android)
-    implementation(libs.coil.compose)
-    implementation(libs.material)
-    implementation(libs.ui.util)
-    implementation(libs.kotlinx.immutables)
 
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.test.junit)

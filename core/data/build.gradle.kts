@@ -40,17 +40,12 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:domain"))
 
-    // https://developers.google.com/ml-kit/vision/barcode-scanning/android
-    // use unbundled model that depends on Google Play Services
-//    implementation(libs.play.services.mlkit.barcode.scanning)
-    // Or comment the dependency above and uncomment the dependency below to
-    // Barcode model
-    // implementation("com.google.mlkit:barcode-scanning:17.3.0")
+    // Google code scanner for google lens
+    implementation(libs.google.scanner)
 
     // Room components
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    implementation(libs.google.scanner)
     ksp(libs.androidx.room.compiler)
     androidTestImplementation(libs.androidx.room.testing)
 

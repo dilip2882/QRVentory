@@ -7,7 +7,7 @@ import androidx.navigation.navigation
 import com.dilip.qrventory.navigation.Graph
 import com.dilip.qrventory.navigation.MainRouteScreen
 import com.dilip.qrventory.navigation.SettingsRouteScreen
-import com.komu.presentation.about.AboutScreen
+import com.dilip.qrventory.presentation.about.AboutScreen
 
 fun NavGraphBuilder.settingsNavGraph(rootNavController: NavHostController) {
     navigation(

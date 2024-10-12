@@ -1,4 +1,4 @@
-package com.komu.presentation.home.components
+package com.dilip.qrventory.presentation.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -25,40 +26,31 @@ fun DeviceCard(navController: NavController) {
     val viewModel: HomeViewModel = hiltViewModel()
     val state = viewModel.state.collectAsState()
     val context = LocalContext.current
-//    val cameraPermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
 
-
-    Box(
+    Card(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
+            .padding(top = 12.dp)
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            contentAlignment = Alignment.Center,
         ) {
-            Text(text = state.value.details)
-            Spacer(modifier = Modifier.size(10.dp))
-            Button(
-                onClick = viewModel::startScanning
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
             ) {
-                Text("Scan QR")
-            }
-//            Spacer(modifier = Modifier.height(10.dp))
-//
-//            Button(
-//                onClick = {
-//                    cameraPermissionState.launchPermissionRequest()
-//                }
-//            ) {
-//                Text(text = "Camera Permission")
-//            }
-//
-//            Spacer(modifier = Modifier.height(10.dp))
-//
-//            CameraPreview()
+                Text(text = state.value.details)
+                Spacer(modifier = Modifier.size(10.dp))
+                Button(
+                    onClick = viewModel::startScanning
+                ) {
+                    Text("Scan QR")
+                }
 
+            }
         }
     }
 }

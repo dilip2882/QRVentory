@@ -93,15 +93,17 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 
+# qr scan using google lens
+# https://developers.google.com/ml-kit/vision/barcode-scanning/code-scanner
+google-scanner = { group = "com.google.android.gms", name = "play-services-code-scanner", version.ref = "googleScanner" }
+
 # ML-kit
 # kotlinx-coroutines-play-services Task<T>.await() instead of the addOnSuccessListener Task pattern.
 play-services-mlkit-barcode-scanning = { module = "com.google.android.gms:play-services-mlkit-barcode-scanning", version.ref = "playServicesMlkitBarcodeScanning" }
-google-scanner = { group = "com.google.android.gms", name = "play-services-code-scanner", version.ref = "googleScanner" }
+# google-scanner = { group = "com.google.android.gms", name = "play-services-code-scanner", version.ref = "googleScanner" }
 gpsCoroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "gpsCoroutines" }
 
 play-services = { group = "com.google.android.gms", name = "play-services-base", version.ref = "playServices" }
-
-
 
 
 # Testing

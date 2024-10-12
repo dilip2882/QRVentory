@@ -1,4 +1,4 @@
-package com.komu.presentation.about
+package com.dilip.qrventory.presentation.about
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons

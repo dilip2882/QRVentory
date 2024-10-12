@@ -1,12 +1,10 @@
-package com.komu.presentation.settings.components
+package com.dilip.qrventory.presentation.settings.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.dilip.qrventory.presentation.settings.components.TextPreferenceWidget
-import com.dilip.qrventory.presentation.settings.components.TrailingWidgetBuffer
 
 @Composable
 fun SwitchPreferenceWidget(
