@@ -2,6 +2,6 @@ package com.dilip.domain.repository
 
 import kotlinx.coroutines.flow.Flow
 
-interface MainRepo {
+interface QRScannerRepository {
     fun startScanning(): Flow<String?>
 }

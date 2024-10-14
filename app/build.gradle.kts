@@ -64,6 +64,9 @@ dependencies {
     // google scanner using lens
     implementation(libs.google.scanner)
 
+    // qr generator
+    implementation(libs.qr.generator)
+
     implementation(libs.androidx.appcompat)
     implementation(libs.core.ktx)
     implementation(libs.androidx.work)
@@ -78,6 +81,12 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
+
+    // Room components
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    androidTestImplementation(libs.androidx.room.testing)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

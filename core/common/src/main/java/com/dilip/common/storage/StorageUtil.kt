@@ -1,10 +1,10 @@
-package util.storage
+package com.dilip.common.storage
 
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
-import models.FileMetadata
+import com.dilip.common.models.FileMetadata
 import java.net.URLDecoder
 import java.text.SimpleDateFormat
 import java.util.Date

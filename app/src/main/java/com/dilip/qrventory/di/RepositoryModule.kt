@@ -1,7 +1,7 @@
 package com.dilip.qrventory.di
 
-import com.dilip.data.repository.MainRepoImpl
-import com.dilip.domain.repository.MainRepo
+import com.dilip.data.repository.QRScannerImpl
+import com.dilip.domain.repository.QRScannerRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,6 +15,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindMainRepo(
-        mainRepoImpl: MainRepoImpl
-    ): MainRepo
+        mainRepoImpl: QRScannerImpl
+    ): QRScannerRepository
 }

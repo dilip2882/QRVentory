@@ -33,7 +33,10 @@ material = "1.12.0"
 core-splashscreen = "1.0.1"
 
 googleScanner = "16.1.0"
-gpsCoroutines = "1.8.1"
+
+qrGenerator = "4.3.0"
+
+gpsCoroutines = "1.9.0"
 playServices = "18.5.0"
 cameraView = "1.3.4"
 cameraLifecycle = "1.3.4"
@@ -97,6 +100,10 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 # https://developers.google.com/ml-kit/vision/barcode-scanning/code-scanner
 google-scanner = { group = "com.google.android.gms", name = "play-services-code-scanner", version.ref = "googleScanner" }
 
+
+# qr generator
+qr-generator = { group = "com.journeyapps", name = "zxing-android-embedded", version.ref = "qrGenerator" }
+
 # ML-kit
 # kotlinx-coroutines-play-services Task<T>.await() instead of the addOnSuccessListener Task pattern.
 play-services-mlkit-barcode-scanning = { module = "com.google.android.gms:play-services-mlkit-barcode-scanning", version.ref = "playServicesMlkitBarcodeScanning" }
@@ -115,6 +122,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 # gradle
 gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
 androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraView" }
 androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraLifecycle" }
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }

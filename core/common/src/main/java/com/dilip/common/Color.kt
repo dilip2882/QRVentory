@@ -1,3 +1,5 @@
+package com.dilip.common
+
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
@@ -9,9 +11,16 @@ val ProteinColor = Orange
 val FatColor = Color(0xFFF44336)
 val LightGray = Color(0xFF808080)
 val MediumGray = Color(0xFF404040)
-val DarkGray = Color(0xFF202020)
 val TextWhite = Color(0xFFEEEEEE)
 
+val DarkGray = Color(0xFF202020)
+val LightBlue = Color(0xFFD7E8DE)
+
+val RedOrange = Color(0xffffab91)
+val RedPink = Color(0xfff48fb1)
+val BabyBlue = Color(0xff81deea)
+val Violet = Color(0xffcf94da)
+val LightGreen = Color(0xffe7ed9b)
 
 // Primary Color
 val Primary = Color(0xFF150099)

@@ -2,7 +2,7 @@ package com.dilip.qrventory.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dilip.domain.repository.MainRepo
+import com.dilip.domain.repository.QRScannerRepository
 import com.dilip.qrventory.presentation.home.components.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repo: MainRepo
+    private val repo: QRScannerRepository
 ) : ViewModel() {
     private val _state = MutableStateFlow(ScreenState())
     val state = _state.asStateFlow()

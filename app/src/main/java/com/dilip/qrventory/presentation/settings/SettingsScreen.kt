@@ -28,7 +28,7 @@ import androidx.navigation.NavHostController
 import com.dilip.qrventory.navigation.SettingsRouteScreen
 import com.dilip.qrventory.presentation.settings.components.LogoHeader
 import com.dilip.qrventory.presentation.settings.components.TextPreferenceWidget
-import util.storage.getReadablePathFromUri
+import com.dilip.common.storage.getReadablePathFromUri
 
 @Composable
 fun SettingsScreen(

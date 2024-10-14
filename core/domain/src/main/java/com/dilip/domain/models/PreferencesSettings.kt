@@ -1,4 +1,4 @@
-package com.dilip.domain.repository.models
+package com.dilip.domain.models
 
 data class PreferencesSettings(
     val storageLocation: String

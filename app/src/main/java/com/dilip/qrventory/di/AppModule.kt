@@ -2,8 +2,15 @@ package com.dilip.qrventory.di
 
 import android.app.Application
 import android.content.Context
+import androidx.room.Room
+import com.dilip.data.database.QrCodeDatabase
 import com.dilip.data.repository.PreferencesDatastore
 import com.dilip.domain.repository.PreferencesRepository
+import com.dilip.domain.repository.QRCodeRepository
+import com.dilip.domain.use_case.AddQrCodeUseCase
+import com.dilip.domain.use_case.AppUseCases
+import com.dilip.domain.use_case.DeleteQrCodeUseCase
+import com.dilip.domain.use_case.GetQrCodeUseCase
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
@@ -53,5 +60,25 @@ object AppModule {
     fun providesPreferencesRepository(
         application: Application
     ): PreferencesRepository = PreferencesDatastore(context = application)
+
+    @Provides
+    @Singleton
+    fun providesQrCodeDatabase(application: Application): QrCodeDatabase {
+        return Room.databaseBuilder(
+            application,
+            QrCodeDatabase::class.java,
+            QrCodeDatabase.DATABASE_NAME
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesQrCodeUseCases(repository: QRCodeRepository): AppUseCases {
+        return AppUseCases(
+            getQrCodeUseCase = GetQrCodeUseCase(repository),
+            deleteQrCodeUseCase = DeleteQrCodeUseCase(repository),
+            addNoteUseCases = AddQrCodeUseCase(repository)
+        )
+    }
 
 }

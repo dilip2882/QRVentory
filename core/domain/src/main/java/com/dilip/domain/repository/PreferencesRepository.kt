@@ -1,6 +1,6 @@
 package com.dilip.domain.repository
 
-import com.dilip.domain.repository.models.PreferencesSettings
+import com.dilip.domain.models.PreferencesSettings
 import kotlinx.coroutines.flow.Flow
 
 interface PreferencesRepository {

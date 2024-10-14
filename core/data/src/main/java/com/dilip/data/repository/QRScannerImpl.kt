@@ -1,6 +1,6 @@
 package com.dilip.data.repository
 
-import com.dilip.domain.repository.MainRepo
+import com.dilip.domain.repository.QRScannerRepository
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner
 import kotlinx.coroutines.channels.awaitClose
@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainRepoImpl @Inject constructor(
+class QRScannerImpl @Inject constructor(
     private val scanner: GmsBarcodeScanner,
-) : MainRepo {
+) : QRScannerRepository {
 
     override fun startScanning(): Flow<String?> {
         return callbackFlow {
