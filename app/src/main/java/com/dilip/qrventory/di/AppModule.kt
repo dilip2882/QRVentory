@@ -5,12 +5,14 @@ import android.content.Context
 import androidx.room.Room
 import com.dilip.data.database.QrCodeDatabase
 import com.dilip.data.repository.PreferencesDatastore
+import com.dilip.data.repository.QRCodeRepositoryImpl
 import com.dilip.domain.repository.PreferencesRepository
 import com.dilip.domain.repository.QRCodeRepository
 import com.dilip.domain.use_case.AddQrCodeUseCase
 import com.dilip.domain.use_case.AppUseCases
 import com.dilip.domain.use_case.DeleteQrCodeUseCase
 import com.dilip.domain.use_case.GetQrCodeUseCase
+import com.dilip.domain.use_case.GetQrCodesUseCase
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
@@ -73,11 +75,19 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideNoteRepository(db: QrCodeDatabase): QRCodeRepository {
+        return QRCodeRepositoryImpl(db.qrDao)
+    }
+
+
+    @Provides
+    @Singleton
     fun providesQrCodeUseCases(repository: QRCodeRepository): AppUseCases {
         return AppUseCases(
-            getQrCodeUseCase = GetQrCodeUseCase(repository),
+            getQrCodesUseCase = GetQrCodesUseCase(repository),
             deleteQrCodeUseCase = DeleteQrCodeUseCase(repository),
-            addNoteUseCases = AddQrCodeUseCase(repository)
+            addQrCodeUseCases = AddQrCodeUseCase(repository),
+            getQrCodeUseCase = GetQrCodeUseCase(repository)
         )
     }
 

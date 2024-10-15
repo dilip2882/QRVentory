@@ -1,7 +1,8 @@
 package com.dilip.domain.use_case
 
 data class AppUseCases(
-    val getQrCodeUseCase: GetQrCodeUseCase,
+    val getQrCodesUseCase: GetQrCodesUseCase,
     val deleteQrCodeUseCase: DeleteQrCodeUseCase,
-    val addNoteUseCases: AddQrCodeUseCase
+    val addQrCodeUseCases: AddQrCodeUseCase,
+    val getQrCodeUseCase: GetQrCodeUseCase
 )

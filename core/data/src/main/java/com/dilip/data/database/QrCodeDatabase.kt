@@ -10,7 +10,7 @@ import com.dilip.domain.models.QrCode
 )
 abstract class QrCodeDatabase: RoomDatabase() {
 
-    abstract val qrCode: QrDao
+    abstract val qrDao: QrDao
 
     companion object {
         const val DATABASE_NAME = "qr_codes_db"

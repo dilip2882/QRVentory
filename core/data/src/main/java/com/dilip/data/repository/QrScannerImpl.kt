@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class QRScannerImpl @Inject constructor(
+class QrScannerImpl @Inject constructor(
     private val scanner: GmsBarcodeScanner,
 ) : QRScannerRepository {
 

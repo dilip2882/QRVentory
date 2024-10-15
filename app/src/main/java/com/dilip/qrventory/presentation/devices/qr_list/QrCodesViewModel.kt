@@ -8,12 +8,14 @@ import com.dilip.domain.models.QrCode
 import com.dilip.domain.use_case.AppUseCases
 import com.dilip.domain.util.OrderType
 import com.dilip.domain.util.QrCodeOrder
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class QrCodesViewModel @Inject constructor(
     private val appUseCases: AppUseCases
 ) : ViewModel() {
@@ -50,7 +52,7 @@ class QrCodesViewModel @Inject constructor(
 
             is QrCodesEvent.RestoreQrCode -> {
                 viewModelScope.launch {
-                    appUseCases.addNoteUseCases(recentlyDeletedQrCode ?: return@launch)
+                    appUseCases.addQrCodeUseCases(recentlyDeletedQrCode ?: return@launch)
                     recentlyDeletedQrCode = null
                 }
 
@@ -66,7 +68,7 @@ class QrCodesViewModel @Inject constructor(
 
     private fun getQrCodes(qrCodeOrder: QrCodeOrder) {
         getQrCodesJob?.cancel()
-        getQrCodesJob = appUseCases.getQrCodeUseCase(qrCodeOrder)
+        getQrCodesJob = appUseCases.getQrCodesUseCase(qrCodeOrder)
             .onEach { qrCodes ->
                 _state.value = state.value.copy(
                     qrCodes = qrCodes,
