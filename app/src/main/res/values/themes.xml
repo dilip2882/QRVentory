@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.QRVentory" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Theme for QRVentory without a title bar -->
+    <style name="Theme.QRVentory" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="windowNoTitle">true</item> <!-- Ensures no title bar is shown -->
+        <item name="windowActionBar">false</item> <!-- Additional to hide ActionBar if applicable -->
+    </style>
 
     <!-- Default splash screen theme for older devices -->
     <style name="App.Starting.Theme" parent="Theme.SplashScreen">
         <item name="postSplashScreenTheme">@style/Theme.QRVentory</item>
     </style>
 </resources>
-
-

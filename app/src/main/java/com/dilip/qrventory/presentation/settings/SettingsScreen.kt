@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.QrCode
 import androidx.compose.material.icons.filled.Storage
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
@@ -76,6 +77,15 @@ fun SettingsScreen(
             HorizontalDivider()
         }
 
+        item {
+            TextPreferenceWidget(
+                title = "Select QR Settings",  // Updated title for clarity
+                icon = Icons.Default.QrCode,
+                onPreferenceClick = {
+                    rootNavController.navigate(SettingsRouteScreen.SelectQR.route)
+                }
+            )
+        }
         item {
             TextPreferenceWidget(
                 title = "About",
