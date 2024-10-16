@@ -19,29 +19,40 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Devices
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.dilip.qrventory.navigation.DevicesRouteScreen
+import com.dilip.qrventory.presentation.devices.qr_chooser.BottomSheetItem
+import com.dilip.qrventory.presentation.devices.qr_chooser.DeviceForm
 import com.dilip.qrventory.presentation.devices.qr_list.QrCodesEvent
 import com.dilip.qrventory.presentation.devices.qr_list.QrCodesViewModel
 import com.dilip.qrventory.presentation.devices.qr_list.components.OrderSection
 import com.dilip.qrventory.presentation.devices.qr_list.components.QrCodeItem
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DevicesScreen(
     rootNavController: NavHostController,
@@ -51,12 +62,17 @@ fun DevicesScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
+    val sheetState = rememberModalBottomSheetState()
+    var showBottomSheet by remember {
+        mutableStateOf(false)
+    }
+
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    // TODO: Implement action to add a new QR code
+                    showBottomSheet = true
                 },
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
@@ -132,6 +148,28 @@ fun DevicesScreen(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                 }
+            }
+        }
+    }
+
+    if (showBottomSheet) {
+        ModalBottomSheet(onDismissRequest = { showBottomSheet = false },
+            sheetState = sheetState) {
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .padding(18.dp),
+                verticalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+
+                DeviceForm(
+                    onSubmit = { model, sn, assignee, location, date ->
+                    }
+                )
+//                BottomSheetItem(icon = Icons.Filled.Devices
+//                    , title = "Devices") {
+//                    showBottomSheet = false
+////                    rootNavController.navigate(DevicesRouteScreen)
+//                }
             }
         }
     }
