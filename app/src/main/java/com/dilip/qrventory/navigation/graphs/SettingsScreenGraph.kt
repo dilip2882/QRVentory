@@ -8,6 +8,7 @@ import com.dilip.qrventory.navigation.Graph
 import com.dilip.qrventory.navigation.MainRouteScreen
 import com.dilip.qrventory.navigation.SettingsRouteScreen
 import com.dilip.qrventory.presentation.about.AboutScreen
+import com.dilip.qrventory.presentation.selectqr.SelectQR
 
 fun NavGraphBuilder.settingsNavGraph(rootNavController: NavHostController) {
     navigation(
@@ -16,6 +17,9 @@ fun NavGraphBuilder.settingsNavGraph(rootNavController: NavHostController) {
     ) {
         composable(route = SettingsRouteScreen.AboutScreen.route) {
             AboutScreen(rootNavController)
+        }
+        composable(route = SettingsRouteScreen.SelectQR.route) {
+            SelectQR(rootNavController) // Navigate to SelectQR
         }
     }
 }
