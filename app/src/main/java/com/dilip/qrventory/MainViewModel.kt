@@ -18,7 +18,8 @@ class MainViewModel @Inject constructor(
     context: Context,
     preferencesRepository: PreferencesRepository,
 ) : ViewModel() {
-    private var splashCondition by mutableStateOf(true)
+    var splashCondition by mutableStateOf(true)
+        private set
 
     private var startDestination by mutableStateOf(Graph.MainScreenGraph)
 
@@ -27,6 +28,13 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             Graph.MainScreenGraph
             splashCondition = true
+        }
+    }
+
+    init {
+        Log.d("MainViewModel", "ViewModel initialized")
+        viewModelScope.launch {
+            splashCondition = false
         }
     }
 }
