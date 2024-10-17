@@ -16,6 +16,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        ksp {
+            arguments
+                arg("room.schemaLocation", "$projectDir/schemas")
+        }
     }
 
     buildTypes {
