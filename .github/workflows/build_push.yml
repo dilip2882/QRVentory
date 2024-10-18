@@ -38,7 +38,7 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      # To make `gradlew` executable
+      # Make `gradlew` executable
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
@@ -59,7 +59,6 @@ jobs:
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-#          alias: ${{ secrets.ALIAS }}
 
       - name: Clean Up Build Artifacts
         run: |
