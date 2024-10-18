@@ -13,7 +13,7 @@ jobs:
   build:
     name: Build Release App
     runs-on: ubuntu-latest
-    environment: my-release-key.b64  # Specify your environment here
+    environment: my-release-key.b64
 
     steps:
       - name: Clone Repo
@@ -22,9 +22,12 @@ jobs:
       - name: Validate Gradle Wrapper
         uses: gradle/actions/wrapper-validation@v4
 
+      # Set up Android SDK using the dedicated action
       - name: Setup Android SDK
-        run: |
-          yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platforms;android-34" "build-tools;34.0.0"
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 34
+          build-tools: "34.0.0"
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -34,21 +37,6 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
-
-      # Uncomment and configure the following steps if you have Google services files
-      # - name: Write Google Services JSON
-      #   uses: DamianReeves/write-file-action@v1.3
-      #   with:
-      #     path: app/google-services.json
-      #     contents: ${{ secrets.GOOGLE_SERVICES_TEXT }}
-      #     write-mode: overwrite
-      #
-      # - name: Write Client Secrets JSON
-      #   uses: DamianReeves/write-file-action@v1.3
-      #   with:
-      #     path: app/src/main/assets/client_secrets.json
-      #     contents: ${{ secrets.CLIENT_SECRETS_TEXT }}
-      #     write-mode: overwrite
 
       - name: Build App and Run Unit Tests
         run: ./gradlew spotlessCheck assembleStandardRelease testStandardReleaseUnitTest --stacktrace
@@ -61,55 +49,3 @@ jobs:
           echo "KEY_PASSWORD exists: ${{ secrets.KEY_PASSWORD != '' }}"
 
       - name: Sign APK
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: app/build/outputs/apk/standard/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-          alias: ${{ secrets.ALIAS }}  # Remove if not using ALIAS
-
-      - name: Clean Up Build Artifacts
-        run: |
-          set -e
-          declare -A APKS=(
-            ["QRVentory.apk"]="app-standard-universal-release-unsigned-signed.apk"
-            ["QRVentory-arm64-v8a.apk"]="app-standard-arm64-v8a-release-unsigned-signed.apk"
-            ["QRVentory-armeabi-v7a.apk"]="app-standard-armeabi-v7a-release-unsigned-signed.apk"
-            ["QRVentory-x86.apk"]="app-standard-x86-release-unsigned-signed.apk"
-            ["QRVentory-x86_64.apk"]="app-standard-x86_64-release-unsigned-signed.apk"
-          )
-          for apk in "${!APKS[@]}"; do
-            cp app/build/outputs/apk/standard/release/${APKS[$apk]} $apk
-            sha=$(sha256sum $apk | awk '{ print $1 }')
-            echo "${apk^^}_SHA=$sha" >> $GITHUB_ENV
-          done
-
-      - name: Create Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.run_number }}
-          name: QRVentory
-          body: |
-            ---
-            ### Checksums
-
-            | Variant        | SHA-256                  |
-            |----------------|--------------------------|
-            | Universal      | ${{ env.QRVENTORY_APK_SHA }} |
-            | arm64-v8a     | ${{ env.QRVENTORY_ARM64_V8A_SHA }} |
-            | armeabi-v7a   | ${{ env.QRVENTORY_ARMEABI_V7A_SHA }} |
-            | x86           | ${{ env.QRVENTORY_X86_SHA }} |
-            | x86_64        | ${{ env.QRVENTORY_X86_64_SHA }} |
-
-            ## If you are unsure which version to choose, go with QRVentory.apk
-          files: |
-            QRVentory.apk
-            QRVentory-arm64-v8a.apk
-            QRVentory-armeabi-v7a.apk
-            QRVentory-x86.apk
-            QRVentory-x86_64.apk
-          draft: true
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.QRVENTORY_GITHUB_TOKEN }}
