@@ -137,6 +137,8 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
+spotless = { id = "com.diffplug.spotless", version = "6.10.0" }
+
 
 [bundles]
 compose-android = [

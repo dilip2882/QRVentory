@@ -14,4 +14,19 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.kotlin.serialization) apply false
+    // Spotless plugin
+    alias(libs.plugins.spotless) apply false
 }
+
+//// Spotless configuration
+//subprojects {
+//    apply(plugin = "com.diffplug.spotless")
+//
+//    spotless {
+//        kotlin {
+//            target("**/*.kt")
+//            // Add formatting options as needed
+//            ktlint()
+//        }
+//    }
+//}
