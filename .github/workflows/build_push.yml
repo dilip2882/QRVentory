@@ -13,6 +13,7 @@ jobs:
   build:
     name: Build Release App
     runs-on: ubuntu-latest
+    environment: my-release-key.b64  # Specify your environment here
 
     steps:
       - name: Clone Repo
@@ -34,24 +35,30 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-#      # Write Google Services JSON
-#      - name: Write google-services.json
-#        uses: DamianReeves/write-file-action@v1.3
-#        with:
-#          path: app/google-services.json
-#          contents: ${{ secrets.GOOGLE_SERVICES_TEXT }}
-#          write-mode: overwrite
-#
-#      # Write Client Secrets JSON
-#      - name: Write client_secrets.json
-#        uses: DamianReeves/write-file-action@v1.3
-#        with:
-#          path: app/src/main/assets/client_secrets.json
-#          contents: ${{ secrets.CLIENT_SECRETS_TEXT }}
-#          write-mode: overwrite
+      # Uncomment and configure the following steps if you have Google services files
+      # - name: Write Google Services JSON
+      #   uses: DamianReeves/write-file-action@v1.3
+      #   with:
+      #     path: app/google-services.json
+      #     contents: ${{ secrets.GOOGLE_SERVICES_TEXT }}
+      #     write-mode: overwrite
+      #
+      # - name: Write Client Secrets JSON
+      #   uses: DamianReeves/write-file-action@v1.3
+      #   with:
+      #     path: app/src/main/assets/client_secrets.json
+      #     contents: ${{ secrets.CLIENT_SECRETS_TEXT }}
+      #     write-mode: overwrite
 
       - name: Build App and Run Unit Tests
         run: ./gradlew spotlessCheck assembleStandardRelease testStandardReleaseUnitTest --stacktrace
+
+      - name: Debug Secrets
+        run: |
+          echo "Checking secrets"
+          echo "SIGNING_KEY exists: ${{ secrets.SIGNING_KEY != '' }}"
+          echo "KEY_STORE_PASSWORD exists: ${{ secrets.KEY_STORE_PASSWORD != '' }}"
+          echo "KEY_PASSWORD exists: ${{ secrets.KEY_PASSWORD != '' }}"
 
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
@@ -60,8 +67,7 @@ jobs:
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-          # Remove this line if you don't want to use ALIAS
-          alias: ${{ secrets.ALIAS }}
+          alias: ${{ secrets.ALIAS }}  # Remove if not using ALIAS
 
       - name: Clean Up Build Artifacts
         run: |
