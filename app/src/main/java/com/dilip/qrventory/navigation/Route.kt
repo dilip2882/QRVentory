@@ -15,7 +15,13 @@ sealed class MainRouteScreen(var route: String) {
 
 sealed class SettingsRouteScreen(var route: String) {
     data object AboutScreen : SettingsRouteScreen("about")
-    data object SelectQR : SettingsRouteScreen("selectQRSettings")
+    data object DeviceAssignee : SettingsRouteScreen("deviceAssignee")
+    data object DeviceLocation : SettingsRouteScreen("deviceLocation")
+    data object DeviceType : SettingsRouteScreen("deviceType")
+
 }
 
-sealed class DevicesRouteScreen(var route: String)
+sealed class DevicesRouteScreen(var route: String) {
+    data object AddDevice : DevicesRouteScreen("add_device")
+    data object EditDevice : DevicesRouteScreen("edit_device/{deviceId}")
+}

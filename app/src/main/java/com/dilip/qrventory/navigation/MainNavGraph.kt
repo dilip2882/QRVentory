@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.dilip.qrventory.navigation.graphs.devicesNavGraph
+import com.dilip.qrventory.navigation.graphs.settingsNavGraph
 import com.dilip.qrventory.presentation.devices.DevicesScreen
 import com.dilip.qrventory.presentation.home.HomeScreen
 import com.dilip.qrventory.presentation.settings.SettingsScreen
@@ -38,5 +40,7 @@ fun MainNavGraph(
         composable(route = MainRouteScreen.SettingsScreen.route) {
             SettingsScreen(rootNavController)
         }
+        settingsNavGraph(rootNavController)
+        devicesNavGraph(rootNavController)
     }
 }

@@ -3,16 +3,37 @@ package com.dilip.qrventory.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.dilip.data.database.QrCodeDatabase
+import com.dilip.data.database.DeviceDao
+import com.dilip.data.database.DeviceDatabase
+import com.dilip.data.database.DeviceQrsDao
+import com.dilip.data.database.DeviceQrsDatabase
 import com.dilip.data.repository.PreferencesDatastore
-import com.dilip.data.repository.QRCodeRepositoryImpl
+import com.dilip.data.repository.device.DeviceAssigneeRepositoryImpl
+import com.dilip.data.repository.device.DeviceLocationRepositoryImpl
+import com.dilip.data.repository.device.DeviceQrsRepositoryImpl
+import com.dilip.data.repository.device.DeviceTypeRepositoryImpl
 import com.dilip.domain.repository.PreferencesRepository
-import com.dilip.domain.repository.QRCodeRepository
-import com.dilip.domain.use_case.AddQrCodeUseCase
-import com.dilip.domain.use_case.AppUseCases
-import com.dilip.domain.use_case.DeleteQrCodeUseCase
-import com.dilip.domain.use_case.GetQrCodeUseCase
-import com.dilip.domain.use_case.GetQrCodesUseCase
+import com.dilip.domain.repository.device.DeviceAssigneeRepository
+import com.dilip.domain.repository.device.DeviceLocationRepository
+import com.dilip.domain.repository.device.DeviceQrsRepository
+import com.dilip.domain.repository.device.DeviceTypeRepository
+import com.dilip.domain.use_case.AddDeviceQr
+import com.dilip.domain.use_case.DeleteDeviceQr
+import com.dilip.domain.use_case.DeviceAssigneeUseCases
+import com.dilip.domain.use_case.DeviceLocationUseCases
+import com.dilip.domain.use_case.DeviceQrsUseCases
+import com.dilip.domain.use_case.DeviceTypeUseCases
+import com.dilip.domain.use_case.GetAllDeviceQrs
+import com.dilip.domain.use_case.UpdateDeviceQr
+import com.dilip.domain.use_case.device_assignee.AddDeviceAssigneeUseCase
+import com.dilip.domain.use_case.device_assignee.DeleteDeviceAssigneeUseCase
+import com.dilip.domain.use_case.device_assignee.GetDeviceAssigneesUseCase
+import com.dilip.domain.use_case.device_location.AddDeviceLocationUseCase
+import com.dilip.domain.use_case.device_location.DeleteDeviceLocationUseCase
+import com.dilip.domain.use_case.device_location.GetDeviceLocationsUseCase
+import com.dilip.domain.use_case.device_type.AddDeviceTypeUseCase
+import com.dilip.domain.use_case.device_type.DeleteDeviceTypeUseCase
+import com.dilip.domain.use_case.device_type.GetDeviceTypesUseCase
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
@@ -65,29 +86,100 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesQrCodeDatabase(application: Application): QrCodeDatabase {
+    fun providesDeviceDatabase(application: Application): DeviceDatabase {
         return Room.databaseBuilder(
             application,
-            QrCodeDatabase::class.java,
-            QrCodeDatabase.DATABASE_NAME
+            DeviceDatabase::class.java,
+            DeviceDatabase.DATABASE_NAME
         ).build()
     }
 
     @Provides
     @Singleton
-    fun provideNoteRepository(db: QrCodeDatabase): QRCodeRepository {
-        return QRCodeRepositoryImpl(db.qrDao)
+    fun providesDeviceDao(database: DeviceDatabase): DeviceDao {
+        return database.deviceDao
     }
 
 
     @Provides
     @Singleton
-    fun providesQrCodeUseCases(repository: QRCodeRepository): AppUseCases {
-        return AppUseCases(
-            getQrCodesUseCase = GetQrCodesUseCase(repository),
-            deleteQrCodeUseCase = DeleteQrCodeUseCase(repository),
-            addQrCodeUseCases = AddQrCodeUseCase(repository),
-            getQrCodeUseCase = GetQrCodeUseCase(repository)
+    fun providesDeviceAssigneeRepository(deviceDao: DeviceDao): DeviceAssigneeRepository {
+        return DeviceAssigneeRepositoryImpl(deviceDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesDeviceAssigneeUseCases(repository: DeviceAssigneeRepository): DeviceAssigneeUseCases {
+        return DeviceAssigneeUseCases(
+            getDeviceAssigneesUseCase = GetDeviceAssigneesUseCase(repository),
+            addDeviceAssigneeUseCase = AddDeviceAssigneeUseCase(repository),
+            deleteDeviceAssigneeUseCase = DeleteDeviceAssigneeUseCase(repository)
+        )
+    }
+
+
+    @Provides
+    @Singleton
+    fun providesDeviceLocationRepository(deviceDao: DeviceDao): DeviceLocationRepository {
+        return DeviceLocationRepositoryImpl(deviceDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesDeviceLocationUseCases(repository: DeviceLocationRepository): DeviceLocationUseCases {
+        return DeviceLocationUseCases(
+            getDeviceLocationsUseCase = GetDeviceLocationsUseCase(repository),
+            addDeviceLocationUseCase = AddDeviceLocationUseCase(repository),
+            deleteDeviceLocationUseCase = DeleteDeviceLocationUseCase(repository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun providesDeviceTypeRepository(deviceDao: DeviceDao): DeviceTypeRepository {
+        return DeviceTypeRepositoryImpl(deviceDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providesDeviceTypeUseCases(repository: DeviceTypeRepository): DeviceTypeUseCases {
+        return DeviceTypeUseCases(
+            getDeviceTypesUseCase = GetDeviceTypesUseCase(repository),
+            addDeviceTypeUseCase = AddDeviceTypeUseCase(repository),
+            deleteDeviceTypeUseCase = DeleteDeviceTypeUseCase(repository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeviceQrsDatabase(app: Application): DeviceQrsDatabase {
+        return Room.databaseBuilder(
+            app,
+            DeviceQrsDatabase::class.java,
+            "device_qrs_db"
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeviceQrsDao(db: DeviceQrsDatabase): DeviceQrsDao {
+        return db.deviceQrsDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeviceQrsRepository(dao: DeviceQrsDao): DeviceQrsRepository {
+        return DeviceQrsRepositoryImpl(dao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeviceQrsUseCases(repository: DeviceQrsRepository): DeviceQrsUseCases {
+        return DeviceQrsUseCases(
+            addDeviceQr = AddDeviceQr(repository),
+            updateDeviceQr = UpdateDeviceQr(repository),
+            deleteDeviceQr = DeleteDeviceQr(repository),
+            getAllDeviceQrs = GetAllDeviceQrs(repository)
         )
     }
 

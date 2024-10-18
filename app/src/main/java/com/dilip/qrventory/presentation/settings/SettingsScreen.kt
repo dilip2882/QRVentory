@@ -12,8 +12,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
+import androidx.compose.material.icons.filled.Devices
+import androidx.compose.material.icons.filled.DevicesOther
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.QrCode
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Storage
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
@@ -79,13 +82,39 @@ fun SettingsScreen(
 
         item {
             TextPreferenceWidget(
-                title = "Select QR Settings",  // Updated title for clarity
-                icon = Icons.Default.QrCode,
+                title = "Device Assignee",
+                icon = Icons.Default.Person,
                 onPreferenceClick = {
-                    rootNavController.navigate(SettingsRouteScreen.SelectQR.route)
+                    rootNavController.navigate(SettingsRouteScreen.DeviceAssignee.route)
                 }
             )
         }
+
+        item {
+            TextPreferenceWidget(
+                title = "Device Location",
+                icon = Icons.Filled.LocationOn,
+                onPreferenceClick = {
+                    rootNavController.navigate(SettingsRouteScreen.DeviceLocation.route)
+                }
+            )
+        }
+
+        item {
+            TextPreferenceWidget(
+                title = "Device Type",
+                icon = Icons.Filled.DevicesOther,
+                onPreferenceClick = {
+                    rootNavController.navigate(SettingsRouteScreen.DeviceType.route)
+                }
+            )
+        }
+
+        item {
+            HorizontalDivider()
+        }
+
+
         item {
             TextPreferenceWidget(
                 title = "About",

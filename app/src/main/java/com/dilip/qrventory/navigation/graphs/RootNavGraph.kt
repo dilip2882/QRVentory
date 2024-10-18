@@ -19,6 +19,7 @@ fun RootNavGraph(startDestination: String) {
             MainScreen(rootNavController = rootNavController)
         }
         settingsNavGraph(rootNavController)
+        devicesNavGraph(rootNavController)
     }
 }
 
