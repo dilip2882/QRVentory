@@ -8,7 +8,7 @@ import com.dilip.qrventory.navigation.DevicesRouteScreen
 import com.dilip.qrventory.navigation.Graph
 import com.dilip.qrventory.navigation.MainRouteScreen
 import com.dilip.qrventory.presentation.devices.DevicesScreen
-import com.dilip.qrventory.presentation.devices.device_list.components.AddDevice
+import com.dilip.qrventory.presentation.devices.device_list.AddDevice
 
 fun NavGraphBuilder.devicesNavGraph(rootNavController: NavHostController) {
     navigation(
@@ -23,7 +23,7 @@ fun NavGraphBuilder.devicesNavGraph(rootNavController: NavHostController) {
         }
         composable(route = DevicesRouteScreen.EditDevice.route) { backStackEntry ->
             val deviceId = backStackEntry.arguments?.getString("deviceId")
-//            EditDeviceScreen(deviceId, navController = rootNavController)
+            AddDevice(navController = rootNavController, deviceId = deviceId)
         }
     }
 }

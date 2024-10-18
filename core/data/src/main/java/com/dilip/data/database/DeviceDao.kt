@@ -46,24 +46,4 @@ interface DeviceDao {
     @Delete
     suspend fun deleteType(type: DeviceType)
 
-    // Device methods
-    @Query("SELECT * FROM device")
-    fun getAllDevices(): List<Device>
-
-    @Transaction
-    @Query("SELECT * FROM Device")
-    fun getAllDevicesWithDetails(): Flow<List<DeviceWithDetails>>
-
-    @Delete
-    suspend fun deleteDevice(device: Device)
-
-    @Query("SELECT * FROM device")
-    fun getAllDevicesFlow(): List<Device>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDevice(device: Device): Long
-
-    @Query("SELECT * FROM device WHERE id = :id")
-    suspend fun getDeviceById(id: Int): Device?
-
 }

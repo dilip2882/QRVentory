@@ -37,7 +37,7 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DeviceAssigneeScreen(
-    rootNavController: NavController,
+    rootNavController: NavController
 ) {
     val viewModel: DeviceAssigneeViewModel = hiltViewModel()
 
