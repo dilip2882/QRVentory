@@ -13,7 +13,7 @@ import com.dilip.qrventory.presentation.devices.device_list.AddDevice
 fun NavGraphBuilder.devicesNavGraph(rootNavController: NavHostController) {
     navigation(
         route = Graph.DevicesGraph,
-        startDestination = MainRouteScreen.DevicesScreen.route
+        startDestination = MainRouteScreen.DevicesScreen.route,
     ) {
         composable(route = MainRouteScreen.DevicesScreen.route) {
             DevicesScreen(rootNavController)

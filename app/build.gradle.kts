@@ -10,7 +10,10 @@ plugins {
 
 android {
     namespace = "com.dilip.qrventory"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk =
+        libs.versions.compileSdk
+            .get()
+            .toInt()
 
     defaultConfig {
         applicationId = "com.dilip.qrventory"
@@ -29,18 +32,16 @@ android {
 //            annotationProcessorOptions {
 //                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
 //            }
-
-        }
+    }
 
     buildTypes {
         release {
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
-
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

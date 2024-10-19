@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class DeviceAssignee(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val deviceId: Long,
-    val name: String
+    val name: String,
 )

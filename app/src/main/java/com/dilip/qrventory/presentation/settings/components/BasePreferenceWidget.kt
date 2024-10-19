@@ -117,7 +117,6 @@ internal fun Modifier.highlightBackground(highlighted: Boolean): Modifier = comp
     Modifier.background(color = highlight)
 }
 
-
 internal val TrailingWidgetBuffer = 16.dp
 internal val PrefsHorizontalPadding = 16.dp
 internal val PrefsVerticalPadding = 16.dp

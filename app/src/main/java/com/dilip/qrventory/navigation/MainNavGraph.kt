@@ -19,7 +19,7 @@ import com.dilip.qrventory.presentation.settings.SettingsScreen
 fun MainNavGraph(
     rootNavController: NavHostController,
     homeNavController: NavHostController,
-    innerPadding: PaddingValues
+    innerPadding: PaddingValues,
 ) {
     NavHost(
         navController = homeNavController,
@@ -29,7 +29,7 @@ fun MainNavGraph(
         enterTransition = { fadeIn() },
         exitTransition = { fadeOut() },
         popEnterTransition = { fadeIn() },
-        popExitTransition = { fadeOut() }
+        popExitTransition = { fadeOut() },
     ) {
         composable(route = MainRouteScreen.HomeScreen.route) {
             HomeScreen(rootNavController)

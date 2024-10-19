@@ -7,5 +7,5 @@ import com.dilip.domain.use_case.device_location.GetDeviceLocationsUseCase
 data class DeviceLocationUseCases(
     val getDeviceLocationsUseCase: GetDeviceLocationsUseCase,
     val addDeviceLocationUseCase: AddDeviceLocationUseCase,
-    val deleteDeviceLocationUseCase: DeleteDeviceLocationUseCase
+    val deleteDeviceLocationUseCase: DeleteDeviceLocationUseCase,
 )

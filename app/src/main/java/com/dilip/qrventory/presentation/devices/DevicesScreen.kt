@@ -38,7 +38,7 @@ import java.io.ByteArrayInputStream
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DevicesScreen(
-    navController: NavController
+    navController: NavController,
 ) {
     val viewModel: DevicesViewModel = hiltViewModel()
     val deviceList by viewModel.devicesQr.collectAsState(initial = emptyList())
@@ -55,13 +55,13 @@ fun DevicesScreen(
                     }) {
                         Icon(Icons.Default.Add, contentDescription = "Add Device")
                     }
-                }
+                },
             )
-        }
+        },
     ) { paddingValues ->
         LazyColumn(
             contentPadding = paddingValues,
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier.padding(horizontal = 16.dp),
         ) {
             items(deviceList) { device ->
                 DeviceListItem(
@@ -75,7 +75,7 @@ fun DevicesScreen(
                     onQrClick = {
                         // Set the QR code to show
                         qrCodeToShow = device.deviceQr
-                    }
+                    },
                 )
             }
         }
@@ -101,12 +101,12 @@ fun showQrCodePopup(qrBytes: ByteArray?, onDismiss: () -> Unit) {
                 text = {
                     Box(
                         modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.Center
+                        contentAlignment = Alignment.Center,
                     ) {
                         Image(
                             bitmap = qrBitmap.asImageBitmap(),
                             contentDescription = "QR Code",
-                            modifier = Modifier.size(200.dp)
+                            modifier = Modifier.size(200.dp),
                         )
                     }
                 },
@@ -114,7 +114,7 @@ fun showQrCodePopup(qrBytes: ByteArray?, onDismiss: () -> Unit) {
                     OutlinedButton(onClick = onDismiss) {
                         Text("Close")
                     }
-                }
+                },
             )
         }
     }

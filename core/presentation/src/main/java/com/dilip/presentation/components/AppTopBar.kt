@@ -53,12 +53,12 @@ fun AppTopBar(
                             if (isSearchActive.value) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                                    contentDescription = "Back icon"
+                                    contentDescription = "Back icon",
                                 )
                             } else {
                                 Icon(
                                     imageVector = Icons.Default.Search,
-                                    contentDescription = "Search Icon"
+                                    contentDescription = "Search Icon",
                                 )
                             }
                         }
@@ -68,11 +68,11 @@ fun AppTopBar(
                             IconButton(onClick = { searchState.value = "" }) {
                                 Icon(
                                     imageVector = Icons.Default.Clear,
-                                    contentDescription = "Clear Icon"
+                                    contentDescription = "Clear Icon",
                                 )
                             }
                         }
-                    }
+                    },
                 )
             } else {
                 Text(text = items[selectedItem].text)
@@ -90,7 +90,7 @@ fun AppTopBar(
                     IconButton(onClick = { isOverflowExpanded.value = true }) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_overflow_24dp),
-                            contentDescription = "Overflow"
+                            contentDescription = "Overflow",
                         )
                     }
                 }
@@ -99,7 +99,7 @@ fun AppTopBar(
                     expanded = isOverflowExpanded.value,
                     onDismissRequest = { isOverflowExpanded.value = false },
                     shape = RoundedCornerShape(16.dp),
-                    offset = DpOffset(x = (-9).dp, y = 0.dp)
+                    offset = DpOffset(x = (-9).dp, y = 0.dp),
                 ) {
                     DropdownMenuItem(
                         text = { Text(text = "Add a New Device") },
@@ -107,12 +107,12 @@ fun AppTopBar(
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Outlined.Devices,
-                                contentDescription = "Import Icon"
+                                contentDescription = "Import Icon",
                             )
-                        }
+                        },
                     )
                 }
             }
-        }
+        },
     )
 }

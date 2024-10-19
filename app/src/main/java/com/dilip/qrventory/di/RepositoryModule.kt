@@ -14,7 +14,7 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun QrScannerRepo(
-        qrScannerImpl: QrScannerImpl
+    abstract fun qrScannerRepo(
+        qrScannerImpl: QrScannerImpl,
     ): QRScannerRepository
 }

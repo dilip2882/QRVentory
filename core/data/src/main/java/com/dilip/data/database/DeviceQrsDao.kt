@@ -10,7 +10,7 @@ import com.dilip.domain.models.device.DeviceQrs
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface DeviceQrsDao{
+interface DeviceQrsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDeviceQrCode(deviceQrs: DeviceQrs)

@@ -15,7 +15,7 @@ import com.dilip.qrventory.presentation.settings.device_type.DeviceTypeScreen
 fun NavGraphBuilder.settingsNavGraph(rootNavController: NavHostController) {
     navigation(
         route = Graph.SettingsGraph,
-        startDestination = MainRouteScreen.SettingsScreen.route
+        startDestination = MainRouteScreen.SettingsScreen.route,
     ) {
         composable(route = SettingsRouteScreen.AboutScreen.route) {
             AboutScreen(rootNavController)

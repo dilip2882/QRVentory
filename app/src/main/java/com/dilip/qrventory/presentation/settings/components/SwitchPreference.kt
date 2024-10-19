@@ -30,5 +30,3 @@ fun SwitchPreferenceWidget(
         onPreferenceClick = { onCheckedChanged(!checked) },
     )
 }
-
-

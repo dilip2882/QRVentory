@@ -1,6 +1,5 @@
 package com.dilip.presentation.splash
 
-import com.dilip.common.Gradient
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,6 +13,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.dilip.common.Gradient
 import com.dilip.common.R
 
 @Preview
@@ -22,13 +22,14 @@ fun SplashScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Gradient), contentAlignment = Alignment.Center
+            .background(Gradient),
+        contentAlignment = Alignment.Center,
     ) {
         Image(
             modifier = Modifier.size(150.dp),
             painter = painterResource(id = R.drawable.baseline_device_unknown_24),
             contentDescription = "Chat",
-            colorFilter = ColorFilter.tint(Color.White)
+            colorFilter = ColorFilter.tint(Color.White),
         )
     }
 }

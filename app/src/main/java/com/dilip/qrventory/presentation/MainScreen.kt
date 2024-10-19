@@ -36,7 +36,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 @Composable
 fun MainScreen(
     rootNavController: NavHostController,
-    homeNavController: NavHostController = rememberNavController()
+    homeNavController: NavHostController = rememberNavController(),
 ) {
     val showBottomNavEvent = Channel<Boolean>()
 
@@ -47,7 +47,7 @@ fun MainScreen(
         listOf(
             NavigationItem(homeAnimatedIcon, text = "Home"),
             NavigationItem(devicesAnimatedIcon, text = "Devices"),
-            NavigationItem(settingsAnimatedIcon, text = "Settings")
+            NavigationItem(settingsAnimatedIcon, text = "Settings"),
         )
     }
 
@@ -56,7 +56,6 @@ fun MainScreen(
         mutableIntStateOf(0)
     }
 
-
     selectedItem = when (backStackState?.destination?.route) {
         MainRouteScreen.HomeScreen.route -> 0
         MainRouteScreen.DevicesScreen.route -> 1
@@ -64,11 +63,11 @@ fun MainScreen(
         else -> 0
     }
 
-    //Hide the bottom navigation when the user is in the details screen
+    // Hide the bottom navigation when the user is in the details screen
     val isBarVisible = remember(key1 = backStackState) {
         backStackState?.destination?.route == MainRouteScreen.HomeScreen.route ||
-                backStackState?.destination?.route == MainRouteScreen.DevicesScreen.route ||
-                backStackState?.destination?.route == MainRouteScreen.SettingsScreen.route
+            backStackState?.destination?.route == MainRouteScreen.DevicesScreen.route ||
+            backStackState?.destination?.route == MainRouteScreen.SettingsScreen.route
     }
 
     val isPullRefreshEnabled = remember(key1 = backStackState) {
@@ -78,7 +77,8 @@ fun MainScreen(
     val viewModel: HomeViewModel = hiltViewModel()
     val context = LocalContext.current
 
-    Scaffold(modifier = Modifier.fillMaxSize(),
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
         bottomBar = {
             if (isBarVisible) {
                 val bottomNavVisible by produceState(initialValue = true) {
@@ -96,34 +96,32 @@ fun MainScreen(
                             when (index) {
                                 0 -> navigateToTab(
                                     navController = homeNavController,
-                                    route = MainRouteScreen.HomeScreen.route
+                                    route = MainRouteScreen.HomeScreen.route,
                                 )
 
                                 1 -> navigateToTab(
                                     navController = homeNavController,
-                                    route = MainRouteScreen.DevicesScreen.route
+                                    route = MainRouteScreen.DevicesScreen.route,
                                 )
 
                                 2 -> navigateToTab(
                                     navController = homeNavController,
-                                    route = MainRouteScreen.SettingsScreen.route
+                                    route = MainRouteScreen.SettingsScreen.route,
                                 )
                             }
-                        }
+                        },
                     )
                 }
-
             }
-        }
+        },
     ) { innerPadding ->
         MainNavGraph(
             rootNavController = rootNavController,
             homeNavController = homeNavController,
-            innerPadding = innerPadding
+            innerPadding = innerPadding,
         )
     }
 }
-
 
 private fun navigateToTab(navController: NavController, route: String) {
     navController.navigate(route) {

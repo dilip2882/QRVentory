@@ -53,7 +53,7 @@ fun DeviceTypeScreen(
                     IconButton(onClick = { isDialogOpen = true }) {
                         Icon(Icons.Default.Add, contentDescription = "Add Type")
                     }
-                }
+                },
             )
         },
         content = { padding ->
@@ -61,14 +61,14 @@ fun DeviceTypeScreen(
                 modifier = Modifier
                     .padding(padding)
                     .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 LazyColumn {
                     items(types) { type ->
                         Row(
                             modifier = Modifier.fillMaxSize(),
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
+                            horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
                             Text(type.type)
                             IconButton(onClick = { viewModel.deleteType(type) }) {
@@ -78,7 +78,7 @@ fun DeviceTypeScreen(
                     }
                 }
             }
-        }
+        },
     )
 
     if (isDialogOpen) {
@@ -93,12 +93,12 @@ fun DeviceTypeScreen(
                         label = { Text("Type Name") },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 8.dp)
+                            .padding(vertical = 8.dp),
                     )
                     Text(
                         "*required",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             },
@@ -111,7 +111,7 @@ fun DeviceTypeScreen(
                             isDialogOpen = false
                         }
                     },
-                    enabled = typeName.isNotBlank()
+                    enabled = typeName.isNotBlank(),
                 ) {
                     Text("Add")
                 }
@@ -120,7 +120,7 @@ fun DeviceTypeScreen(
                 TextButton(onClick = { isDialogOpen = false }) {
                     Text("Cancel")
                 }
-            }
+            },
         )
     }
 }

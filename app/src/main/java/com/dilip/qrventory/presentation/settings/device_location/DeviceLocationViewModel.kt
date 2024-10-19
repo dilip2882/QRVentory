@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DeviceLocationViewModel @Inject constructor(
-    private val deviceLocationUseCase: DeviceLocationUseCases
+    private val deviceLocationUseCase: DeviceLocationUseCases,
 ) : ViewModel() {
 
     private val _locations = MutableStateFlow<List<DeviceLocation>>(emptyList())

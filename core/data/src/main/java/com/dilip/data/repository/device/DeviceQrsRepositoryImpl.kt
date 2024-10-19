@@ -6,7 +6,7 @@ import com.dilip.domain.repository.device.DeviceQrsRepository
 import kotlinx.coroutines.flow.Flow
 
 class DeviceQrsRepositoryImpl(
-    private val dao: DeviceQrsDao
+    private val dao: DeviceQrsDao,
 ) : DeviceQrsRepository {
 
     override suspend fun insertDeviceQr(deviceQr: DeviceQrs) {

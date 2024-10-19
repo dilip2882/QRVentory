@@ -1,5 +1,6 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
@@ -43,7 +44,11 @@ subprojects {
                         "ktlint_standard_type-argument-comment" to "disabled",
                         "ktlint_standard_value-argument-comment" to "disabled",
                         "ktlint_standard_value-parameter-comment" to "disabled",
-                        "ktlint_standard_no-wildcard-imports" to "disabled"
+                        "ktlint_standard_no-wildcard-imports" to "disabled",
+                        "ktlint_standard_package-name" to "disabled",
+                        "ktlint_standard_no-empty-file" to "disabled",
+                        "ktlint_standard_property-naming" to "disabled",
+                        "ktlint_standard_function-naming" to "disabled"
                     )
                 )
             trimTrailingWhitespace()
@@ -55,11 +60,11 @@ subprojects {
             ktlint(ktlintVersion)
         }
 
-//        afterEvaluate {
-//            tasks.withType<KotlinCompile>() {
-//                finalizedBy("spotlessApply")
-//            }
-//        }
+        afterEvaluate {
+            tasks.withType<KotlinCompile>() {
+                finalizedBy("spotlessApply")
+            }
+        }
 
     }
 }

@@ -22,4 +22,3 @@ fun RootNavGraph(startDestination: String) {
         devicesNavGraph(rootNavController)
     }
 }
-

@@ -10,7 +10,10 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk =
+            libs.versions.minSdk
+                .get()
+                .toInt()
 
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -20,7 +23,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -31,7 +34,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
 }
 
 dependencies {
@@ -41,10 +43,9 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
-    
+
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose.android)
-
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

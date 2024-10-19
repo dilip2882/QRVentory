@@ -5,7 +5,7 @@ import com.dilip.domain.models.device.DeviceLocation
 import com.dilip.domain.repository.device.DeviceLocationRepository
 
 class DeviceLocationRepositoryImpl(
-    private val deviceDao: DeviceDao
+    private val deviceDao: DeviceDao,
 ) : DeviceLocationRepository {
     override suspend fun getAllLocations(deviceId: Long): List<DeviceLocation> {
         return deviceDao.getAllLocations(deviceId)

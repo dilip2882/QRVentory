@@ -8,5 +8,5 @@ data class DeviceAssigneeUseCases(
     // Device Assignee
     val getDeviceAssigneesUseCase: GetDeviceAssigneesUseCase,
     val addDeviceAssigneeUseCase: AddDeviceAssigneeUseCase,
-    val deleteDeviceAssigneeUseCase: DeleteDeviceAssigneeUseCase
+    val deleteDeviceAssigneeUseCase: DeleteDeviceAssigneeUseCase,
 )

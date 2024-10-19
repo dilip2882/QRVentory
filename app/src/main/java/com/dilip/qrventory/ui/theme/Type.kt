@@ -11,42 +11,42 @@ import com.dilip.qrventory.R
 val Lexend = FontFamily(
     Font(R.font.lexend_medium, FontWeight.Medium),
     Font(R.font.lexend_semi_bold, FontWeight.SemiBold),
-    Font(R.font.lexend_bold, FontWeight.Bold)
+    Font(R.font.lexend_bold, FontWeight.Bold),
 )
 val OpenSans = FontFamily(
     Font(R.font.open_sans_light, FontWeight.Light),
-    Font(R.font.open_sans_regular, FontWeight.Normal)
+    Font(R.font.open_sans_regular, FontWeight.Normal),
 )
 
 val Typography = Typography(
     headlineMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
-        fontSize = 21.sp
+        fontSize = 21.sp,
     ),
     labelMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp
+        fontSize = 18.sp,
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
-        fontSize = 14.sp
+        fontSize = 14.sp,
     ),
     bodyMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontSize = 16.sp,
     ),
     bodySmall = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
+        fontSize = 14.sp,
     ),
     titleMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 15.sp
+        fontSize = 15.sp,
     ),
 )

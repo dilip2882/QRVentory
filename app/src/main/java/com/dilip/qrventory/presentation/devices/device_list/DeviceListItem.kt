@@ -30,13 +30,13 @@ fun DeviceListItem(
     device: DeviceQrs,
     onEditClick: () -> Unit,
     onDeleteClick: () -> Unit,
-    onQrClick: () -> Unit
+    onQrClick: () -> Unit,
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+        elevation = CardDefaults.cardElevation(4.dp),
     ) {
         Row(modifier = Modifier.padding(16.dp)) {
             Column(modifier = Modifier.weight(1f)) {
@@ -51,7 +51,7 @@ fun DeviceListItem(
                 Row {
                     OutlinedButton(
                         onClick = onEditClick,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     ) {
                         Text("Edit")
                     }
@@ -61,7 +61,7 @@ fun DeviceListItem(
                     OutlinedButton(
                         onClick = onDeleteClick,
                         modifier = Modifier.weight(1f),
-                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Red)
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Red),
                     ) {
                         Text("Delete")
                     }
@@ -88,7 +88,7 @@ fun DeviceListItem(
                             .size(80.dp)
                             .padding(start = 16.dp)
                             .align(Alignment.CenterVertically)
-                            .clickable(onClick = onQrClick)
+                            .clickable(onClick = onQrClick),
                     )
                 }
             }
@@ -106,10 +106,10 @@ fun DeviceListItemPreview() {
             deviceAssignee = "John Doe",
             date = "2023-10-18",
             location = "Building A",
-            deviceQr = null
+            deviceQr = null,
         ),
         onEditClick = {},
         onDeleteClick = {},
-        onQrClick = {}
+        onQrClick = {},
     )
 }

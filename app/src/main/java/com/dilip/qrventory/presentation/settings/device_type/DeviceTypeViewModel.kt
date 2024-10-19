@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DeviceTypeViewModel @Inject constructor(
-    private val deviceTypeUseCases: DeviceTypeUseCases
+    private val deviceTypeUseCases: DeviceTypeUseCases,
 ) : ViewModel() {
 
     private val _types = MutableStateFlow<List<DeviceType>>(emptyList())

@@ -53,7 +53,7 @@ fun DeviceLocationScreen(
                     IconButton(onClick = { isDialogOpen = true }) {
                         Icon(Icons.Default.Add, contentDescription = "Add Location")
                     }
-                }
+                },
             )
         },
         content = { padding ->
@@ -61,14 +61,14 @@ fun DeviceLocationScreen(
                 modifier = Modifier
                     .padding(padding)
                     .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 LazyColumn {
                     items(locations) { location ->
                         Row(
                             modifier = Modifier.fillMaxSize(),
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
+                            horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
                             Text(location.location)
                             IconButton(onClick = { viewModel.deleteLocation(location) }) {
@@ -78,7 +78,7 @@ fun DeviceLocationScreen(
                     }
                 }
             }
-        }
+        },
     )
 
     // Dialog for adding a new location
@@ -94,12 +94,12 @@ fun DeviceLocationScreen(
                         label = { Text("Location Name") },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 8.dp)
+                            .padding(vertical = 8.dp),
                     )
                     Text(
                         "*required",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             },
@@ -112,7 +112,7 @@ fun DeviceLocationScreen(
                             isDialogOpen = false
                         }
                     },
-                    enabled = locationName.isNotBlank()
+                    enabled = locationName.isNotBlank(),
                 ) {
                     Text("Add")
                 }
@@ -121,7 +121,7 @@ fun DeviceLocationScreen(
                 TextButton(onClick = { isDialogOpen = false }) {
                     Text("Cancel")
                 }
-            }
+            },
         )
     }
 }

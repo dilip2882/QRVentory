@@ -36,7 +36,6 @@ fun SearchBar(
     trailingIcon: @Composable (() -> Unit)? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
-
     val focusManager = LocalFocusManager.current
 
     val focusRequester = remember { FocusRequester() }
@@ -80,7 +79,7 @@ fun SearchBar(
             keyboardActions = KeyboardActions(
                 onSearch = {
                     onSearch()
-                }
+                },
             ),
             textStyle = MaterialTheme.typography.bodySmall,
             colors = TextFieldDefaults.colors(
@@ -96,4 +95,3 @@ fun SearchBar(
         )
     }
 }
-

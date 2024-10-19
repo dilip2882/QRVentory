@@ -8,4 +8,3 @@ interface PreferencesRepository {
     suspend fun updateStorageLocation(uri: String)
     fun preferenceSettings(): Flow<PreferencesSettings>
 }
-

@@ -34,7 +34,6 @@ val SecondaryGradientEnd = Color(0xFFE1BEE7) // Lighter shade of purple
 
 val Neutral50 = Color(0xFF787579)
 
-
 val Gradient = Brush.linearGradient(
-    listOf(Primary, Secondary)
+    listOf(Primary, Secondary),
 )

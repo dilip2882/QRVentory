@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class DeviceLocation(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val deviceId: Long,
-    val location: String
+    val location: String,
 )
