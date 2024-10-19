@@ -55,11 +55,11 @@ subprojects {
             ktlint(ktlintVersion)
         }
 
-        afterEvaluate {
-            tasks.withType<KotlinCompile>() {
-                finalizedBy("spotlessApply")
-            }
-        }
+//        afterEvaluate {
+//            tasks.withType<KotlinCompile>() {
+//                finalizedBy("spotlessApply")
+//            }
+//        }
 
     }
 }

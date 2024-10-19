@@ -12,7 +12,7 @@ import com.dilip.domain.models.device.DeviceType
         DeviceType::class,
         DeviceAssignee::class,
         DeviceLocation::class],
-    version = 2
+    version = 1
 )
 abstract class DeviceDatabase : RoomDatabase() {
 
