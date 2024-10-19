@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.DropdownMenu
@@ -19,6 +19,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -30,11 +31,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -67,7 +71,7 @@ fun AddDevice(
     var selectedDeviceType by remember { mutableStateOf("") }
     var selectedAssignee by remember { mutableStateOf("") }
     var selectedLocation by remember { mutableStateOf("") }
-    var selectedDate by remember { mutableStateOf(Date().time) }
+    var selectedDate by remember { mutableLongStateOf(Date().time) }
 
     // Dropdown expand states
     var expandedType by remember { mutableStateOf(false) }
@@ -108,7 +112,10 @@ fun AddDevice(
             title = { Text(if (deviceId == null) "Add Device" else "Edit Device") },
             navigationIcon = {
                 IconButton(onClick = { navController.popBackStack() }) {
-                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                        contentDescription = "Back"
+                    )
                 }
             }
         )
@@ -127,6 +134,7 @@ fun AddDevice(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
+
                 )
             }
 
@@ -144,7 +152,7 @@ fun AddDevice(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)
-                            .menuAnchor()
+                            .menuAnchor(MenuAnchorType.PrimaryNotEditable, true)
                     )
                     DropdownMenu(
                         expanded = expandedType,
@@ -178,7 +186,7 @@ fun AddDevice(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)
-                            .menuAnchor()
+                            .menuAnchor(MenuAnchorType.PrimaryNotEditable, true)
                     )
                     DropdownMenu(
                         expanded = expandedAssignee,
@@ -212,7 +220,7 @@ fun AddDevice(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)
-                            .menuAnchor()
+                            .menuAnchor(MenuAnchorType.PrimaryNotEditable, true)
                     )
                     DropdownMenu(
                         expanded = expandedLocation,
@@ -245,12 +253,17 @@ fun AddDevice(
             }
 
             item {
+                Modifier.align(Alignment.CenterHorizontally)
                 Text(
-                    text = "Selected Date: ${convertLongDates(selectedDate)}",
+                    text = "Default Selected Date: ${convertLongDates(selectedDate)}",
                     modifier = Modifier
                         .padding(top = 16.dp)
-                        .wrapContentSize(Alignment.Center),
-                    fontSize = 24.sp
+                        .fillMaxWidth()
+                        .wrapContentSize(Alignment.Center)
+                        .align(Alignment.CenterHorizontally),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
                 )
             }
         }
