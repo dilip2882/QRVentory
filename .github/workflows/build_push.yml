@@ -24,7 +24,7 @@ jobs:
 
       - name: Setup Android SDK
         run: |
-          sdkmanager "build-tools;34.0.0"
+          ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "build-tools;34.0.0"
 
       - name: Set up JDK
         uses: actions/setup-java@v4
