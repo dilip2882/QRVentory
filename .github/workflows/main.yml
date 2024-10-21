@@ -1,13 +1,9 @@
-name: Release Builder
-
+name: AndroidBuild
 on:
+  pull_request:
+    branches: [ master ]
   push:
-    branches:
-      - 'release'
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+    branches: [ master ]
 
 jobs:
   build:
@@ -24,7 +20,7 @@ jobs:
 
       - name: Setup Android SDK
         run: |
-          ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "build-tools;34.0.0"
+          yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platforms;android-34" "build-tools;34.0.0"
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -32,14 +28,12 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+      - name: Build with Gradle
+        run: ./gradlew build
 
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
-      - name: Upload Build Artifact
+      - name: Uipload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: QRVentory.apk
           path: app/build/outputs/apk/release/app-release.apk
+
