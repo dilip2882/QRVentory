@@ -53,6 +53,9 @@ jobs:
           echo "KEY_STORE_PASSWORD exists: ${{ secrets.KEY_STORE_PASSWORD != '' }}"
           echo "KEY_PASSWORD exists: ${{ secrets.KEY_PASSWORD != '' }}"
 
+      - name: List APK Directory
+        run: ls app/build/outputs/apk/release/
+
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
         with:
@@ -102,6 +105,6 @@ jobs:
             QRVentory-x86.apk
             QRVentory-x86_64.apk
           draft: true
-          prerelease: false
+          prerelease: yes
         env:
           GITHUB_TOKEN: ${{ secrets.QRVENTORY_GITHUB_TOKEN }}
