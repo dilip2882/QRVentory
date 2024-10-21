@@ -37,7 +37,7 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DeviceAssigneeScreen(
-    rootNavController: NavController
+    rootNavController: NavController,
 ) {
     val viewModel: DeviceAssigneeViewModel = hiltViewModel()
 
@@ -53,7 +53,7 @@ fun DeviceAssigneeScreen(
                     IconButton(onClick = { isDialogOpen = true }) {
                         Icon(Icons.Default.Add, contentDescription = "Add Assignee")
                     }
-                }
+                },
             )
         },
         content = { padding ->
@@ -61,14 +61,14 @@ fun DeviceAssigneeScreen(
                 modifier = Modifier
                     .padding(padding)
                     .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 LazyColumn {
                     items(assignees) { assignee ->
                         Row(
                             modifier = Modifier.fillMaxSize(),
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
+                            horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
                             Text(assignee.name)
                             IconButton(onClick = { viewModel.deleteAssignee(assignee) }) {
@@ -78,14 +78,14 @@ fun DeviceAssigneeScreen(
                     }
                 }
             }
-        }
+        },
     )
 
     // Dialog for adding a new assignee (styled as shown in the image)
     if (isDialogOpen) {
         AlertDialog(
             onDismissRequest = { isDialogOpen = false },
-            title = { Text("Add category") },  // Adjusted to fit the look of the image
+            title = { Text("Add category") }, // Adjusted to fit the look of the image
             text = {
                 Column {
                     OutlinedTextField(
@@ -94,12 +94,13 @@ fun DeviceAssigneeScreen(
                         label = { Text("Name") },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 8.dp)
+                            .padding(vertical = 8.dp),
+                        singleLine = true,
                     )
                     Text(
                         "*required",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             },
@@ -112,7 +113,7 @@ fun DeviceAssigneeScreen(
                             isDialogOpen = false
                         }
                     },
-                    enabled = name.isNotBlank()  // Enable only if the input is not blank
+                    enabled = name.isNotBlank(), // Enable only if the input is not blank
                 ) {
                     Text("Add")
                 }
@@ -121,7 +122,7 @@ fun DeviceAssigneeScreen(
                 TextButton(onClick = { isDialogOpen = false }) {
                     Text("Cancel")
                 }
-            }
+            },
         )
     }
 }

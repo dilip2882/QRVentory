@@ -7,19 +7,18 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.dilip.domain.repository.PreferencesRepository
 import com.dilip.domain.models.PreferencesSettings
+import com.dilip.domain.repository.PreferencesRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "appPreferences")
 
 class PreferencesDatastore @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
 ) : PreferencesRepository {
 
     private object PreferencesKeys {
@@ -43,5 +42,4 @@ class PreferencesDatastore @Inject constructor(
             PreferencesSettings(storageLocation)
         }
     }
-
 }

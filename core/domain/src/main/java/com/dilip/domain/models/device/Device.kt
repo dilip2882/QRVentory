@@ -16,13 +16,10 @@ data class Device(
     val date: String,
     val timestamp: Long,
     val color: Int,
-){
+) {
     companion object {
         val qrCodeColors = listOf(Orange, LightGreen, Violet, BabyBlue, RedPink)
     }
 }
 
-
 class InvalidQrCodeException(message: String) : Exception(message)
-
-

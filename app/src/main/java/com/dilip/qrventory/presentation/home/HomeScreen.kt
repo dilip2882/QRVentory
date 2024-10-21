@@ -1,6 +1,5 @@
 package com.dilip.qrventory.presentation.home
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.heightIn
@@ -30,16 +29,16 @@ fun HomeScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("Home") },
-                colors = TopAppBarDefaults.mediumTopAppBarColors()
+                colors = TopAppBarDefaults.mediumTopAppBarColors(),
             )
-        }
+        },
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
                 .wrapContentSize(),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Card(
                 modifier = Modifier
@@ -47,7 +46,7 @@ fun HomeScreen(navController: NavController) {
                     .wrapContentSize()
                     .widthIn(min = 200.dp)
                     .heightIn(min = 100.dp),
-                elevation = CardDefaults.elevatedCardElevation(4.dp)
+                elevation = CardDefaults.elevatedCardElevation(4.dp),
             ) {
                 DeviceCard(navController = navController)
             }

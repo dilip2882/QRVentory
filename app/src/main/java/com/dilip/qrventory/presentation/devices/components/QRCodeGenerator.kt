@@ -48,24 +48,23 @@ fun QRCodeGenerator() {
         modifier = Modifier.padding(horizontal = 20.dp),
         verticalArrangement = Arrangement.SpaceEvenly,
     ) {
-
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 "Generate QR Code",
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
 
             if (qrCodeGenerated != null) {
                 Image(
                     bitmap = qrCodeGenerated!!.asImageBitmap(),
                     contentDescription = "",
-                    modifier = Modifier.size(220.dp)
+                    modifier = Modifier.size(220.dp),
                 )
             } else {
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_qr_code_scanner_24),
                     contentDescription = "",
-                    modifier = Modifier.size(220.dp)
+                    modifier = Modifier.size(220.dp),
                 )
             }
         }
@@ -77,23 +76,24 @@ fun QRCodeGenerator() {
                     .border(
                         width = 2.dp,
                         color = Color.White,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
                     )
                     .fillMaxWidth(),
                 placeholder = {
                     Text(
                         text = " Entre text",
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
                     )
                 },
                 shape = RoundedCornerShape(10.dp),
                 colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = Color.White
+                    unfocusedContainerColor = Color.White,
                 ),
                 onValueChange = {
                     textValue = it
-                })
+                },
+            )
 
             Spacer(Modifier.height(20.dp))
 
@@ -103,7 +103,7 @@ fun QRCodeGenerator() {
                 },
                 enabled = textValue.text.isNotEmpty(),
                 text = "Generate QRCode",
-                color = Color.Green
+                color = Color.Green,
             )
         }
     }
@@ -119,10 +119,13 @@ fun generateQrCode(text: String): Bitmap {
     for (y in 0 until h) {
         for (x in 0 until w) {
             bitmap.setPixel(
-                x, y, if (matrix.get(x, y))
+                x,
+                y,
+                if (matrix.get(x, y)) {
                     android.graphics.Color.BLACK
-                else
+                } else {
                     android.graphics.Color.WHITE
+                },
             )
         }
     }
@@ -144,13 +147,13 @@ fun RoundedButton(
         modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
             containerColor = color,
-            contentColor = Color.Black
-        )
+            contentColor = Color.Black,
+        ),
     ) {
         Text(
             text,
             modifier = Modifier.padding(vertical = 6.dp),
-            color = Color.Black
+            color = Color.Black,
         )
     }
 }
@@ -161,7 +164,7 @@ fun QRCodeAppPreview() {
     QRVentoryTheme(dynamicColor = true) {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
+            color = MaterialTheme.colorScheme.background,
         ) {
             QRCodeGenerator()
         }

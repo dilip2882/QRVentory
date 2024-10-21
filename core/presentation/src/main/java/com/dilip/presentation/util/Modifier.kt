@@ -8,9 +8,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.alpha
 
-const val SecondaryItemAlpha = .78f
+const val SECONDARY_ITEM_ALPHA = .78f
 
-fun Modifier.secondaryItemAlpha(): Modifier = this.alpha(SecondaryItemAlpha)
+fun Modifier.secondaryItemAlpha(): Modifier = this.alpha(SECONDARY_ITEM_ALPHA)
 
 @OptIn(ExperimentalFoundationApi::class)
 fun Modifier.clickableNoIndication(

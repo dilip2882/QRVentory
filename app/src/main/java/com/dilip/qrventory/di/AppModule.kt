@@ -81,7 +81,7 @@ object AppModule {
     @Provides
     @Singleton
     fun providesPreferencesRepository(
-        application: Application
+        application: Application,
     ): PreferencesRepository = PreferencesDatastore(context = application)
 
     @Provides
@@ -90,7 +90,7 @@ object AppModule {
         return Room.databaseBuilder(
             application,
             DeviceDatabase::class.java,
-            DeviceDatabase.DATABASE_NAME
+            DeviceDatabase.DATABASE_NAME,
         ).build()
     }
 
@@ -99,7 +99,6 @@ object AppModule {
     fun providesDeviceDao(database: DeviceDatabase): DeviceDao {
         return database.deviceDao
     }
-
 
     @Provides
     @Singleton
@@ -113,10 +112,9 @@ object AppModule {
         return DeviceAssigneeUseCases(
             getDeviceAssigneesUseCase = GetDeviceAssigneesUseCase(repository),
             addDeviceAssigneeUseCase = AddDeviceAssigneeUseCase(repository),
-            deleteDeviceAssigneeUseCase = DeleteDeviceAssigneeUseCase(repository)
+            deleteDeviceAssigneeUseCase = DeleteDeviceAssigneeUseCase(repository),
         )
     }
-
 
     @Provides
     @Singleton
@@ -130,7 +128,7 @@ object AppModule {
         return DeviceLocationUseCases(
             getDeviceLocationsUseCase = GetDeviceLocationsUseCase(repository),
             addDeviceLocationUseCase = AddDeviceLocationUseCase(repository),
-            deleteDeviceLocationUseCase = DeleteDeviceLocationUseCase(repository)
+            deleteDeviceLocationUseCase = DeleteDeviceLocationUseCase(repository),
         )
     }
 
@@ -146,7 +144,7 @@ object AppModule {
         return DeviceTypeUseCases(
             getDeviceTypesUseCase = GetDeviceTypesUseCase(repository),
             addDeviceTypeUseCase = AddDeviceTypeUseCase(repository),
-            deleteDeviceTypeUseCase = DeleteDeviceTypeUseCase(repository)
+            deleteDeviceTypeUseCase = DeleteDeviceTypeUseCase(repository),
         )
     }
 
@@ -156,7 +154,7 @@ object AppModule {
         return Room.databaseBuilder(
             app,
             DeviceQrsDatabase::class.java,
-            "device_qrs_db"
+            "device_qrs_db",
         ).build()
     }
 
@@ -179,8 +177,7 @@ object AppModule {
             addDeviceQr = AddDeviceQr(repository),
             updateDeviceQr = UpdateDeviceQr(repository),
             deleteDeviceQr = DeleteDeviceQr(repository),
-            getAllDeviceQrs = GetAllDeviceQrs(repository)
+            getAllDeviceQrs = GetAllDeviceQrs(repository),
         )
     }
-
 }

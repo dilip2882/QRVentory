@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repo: QRScannerRepository
+    private val repo: QRScannerRepository,
 ) : ViewModel() {
     private val _state = MutableStateFlow(ScreenState())
     val state = _state.asStateFlow()
@@ -22,11 +22,10 @@ class HomeViewModel @Inject constructor(
             repo.startScanning().collect { data ->
                 if (!data.isNullOrBlank()) {
                     _state.value = state.value.copy(
-                        details = data
+                        details = data,
                     )
                 }
             }
         }
     }
 }
-

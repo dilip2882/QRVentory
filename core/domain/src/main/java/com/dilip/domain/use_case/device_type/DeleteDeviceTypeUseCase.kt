@@ -4,7 +4,7 @@ import com.dilip.domain.models.device.DeviceType
 import com.dilip.domain.repository.device.DeviceTypeRepository
 
 class DeleteDeviceTypeUseCase(
-    private val repository: DeviceTypeRepository
+    private val repository: DeviceTypeRepository,
 ) {
     suspend operator fun invoke(type: DeviceType) {
         repository.deleteType(type)

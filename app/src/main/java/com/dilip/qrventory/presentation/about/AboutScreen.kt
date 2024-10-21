@@ -31,13 +31,13 @@ fun AboutScreen(rootNavController: NavController, modifier: Modifier = Modifier)
                 title = { Text(text = "About") },
                 navigationIcon = {
                     IconButton(
-                        onClick = { rootNavController.navigateUp() }
+                        onClick = { rootNavController.navigateUp() },
                     ) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
                     }
                 },
             )
-        }
+        },
     ) { contentPadding ->
         LazyColumn(contentPadding = contentPadding) {
             item {

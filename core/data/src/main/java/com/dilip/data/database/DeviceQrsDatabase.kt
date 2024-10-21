@@ -8,5 +8,3 @@ import com.dilip.domain.models.device.DeviceQrs
 abstract class DeviceQrsDatabase : RoomDatabase() {
     abstract fun deviceQrsDao(): DeviceQrsDao
 }
-
-

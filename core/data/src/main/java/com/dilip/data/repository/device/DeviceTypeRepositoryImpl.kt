@@ -6,7 +6,7 @@ import com.dilip.domain.repository.device.DeviceTypeRepository
 import kotlinx.coroutines.flow.first
 
 class DeviceTypeRepositoryImpl(
-    private val deviceDao: DeviceDao
+    private val deviceDao: DeviceDao,
 ) : DeviceTypeRepository {
     override suspend fun getAllTypes(deviceId: Long): List<DeviceType> {
         return deviceDao.getAllTypes(deviceId).first()

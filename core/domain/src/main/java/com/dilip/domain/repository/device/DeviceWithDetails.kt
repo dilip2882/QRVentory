@@ -11,17 +11,17 @@ data class DeviceWithDetails(
     @Embedded val device: Device,
     @Relation(
         parentColumn = "id",
-        entityColumn = "deviceId"
+        entityColumn = "deviceId",
     )
     val assignees: List<DeviceAssignee>,
     @Relation(
         parentColumn = "id",
-        entityColumn = "deviceId"
+        entityColumn = "deviceId",
     )
     val locations: List<DeviceLocation>,
     @Relation(
         parentColumn = "id",
-        entityColumn = "deviceId"
+        entityColumn = "deviceId",
     )
-    val types: List<DeviceType>
+    val types: List<DeviceType>,
 )

@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.DropdownMenu
@@ -19,6 +19,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -30,18 +31,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.dilip.domain.models.device.DeviceQrs
 import com.dilip.qrventory.presentation.devices.DevicesViewModel
-import com.dilip.qrventory.presentation.devices.components.bitmapToByteArray
 import com.dilip.qrventory.presentation.devices.components.generateQrCode
 import com.dilip.qrventory.presentation.settings.device_assignee.DeviceAssigneeViewModel
 import com.dilip.qrventory.presentation.settings.device_location.DeviceLocationViewModel
@@ -54,20 +57,19 @@ import java.util.Locale
 @Composable
 fun AddDevice(
     navController: NavController,
-    deviceId: String? = null
+    deviceId: String? = null,
 ) {
-
     val devicesViewModel: DevicesViewModel = hiltViewModel()
     val deviceTypeViewModel: DeviceTypeViewModel = hiltViewModel()
     val deviceAssigneeViewModel: DeviceAssigneeViewModel = hiltViewModel()
     val deviceLocationViewModel: DeviceLocationViewModel = hiltViewModel()
 
     // Device details state variables
-    var deviceSerialNo by remember { mutableStateOf(deviceId ?: "") }  // Prepopulate if editing
+    var deviceSerialNo by remember { mutableStateOf(deviceId ?: "") } // Prepopulate if editing
     var selectedDeviceType by remember { mutableStateOf("") }
     var selectedAssignee by remember { mutableStateOf("") }
     var selectedLocation by remember { mutableStateOf("") }
-    var selectedDate by remember { mutableStateOf(Date().time) }
+    var selectedDate by remember { mutableLongStateOf(Date().time) }
 
     // Dropdown expand states
     var expandedType by remember { mutableStateOf(false) }
@@ -108,16 +110,19 @@ fun AddDevice(
             title = { Text(if (deviceId == null) "Add Device" else "Edit Device") },
             navigationIcon = {
                 IconButton(onClick = { navController.popBackStack() }) {
-                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                        contentDescription = "Back",
+                    )
                 }
-            }
+            },
         )
 
         // Form fields
         LazyColumn(
             modifier = Modifier
                 .padding(30.dp)
-                .fillMaxWidth()
+                .fillMaxWidth(),
         ) {
             item {
                 OutlinedTextField(
@@ -126,7 +131,8 @@ fun AddDevice(
                     label = { Text("Device Serial Number") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp)
+                        .padding(10.dp),
+                    singleLine = true,
                 )
             }
 
@@ -134,7 +140,7 @@ fun AddDevice(
             item {
                 ExposedDropdownMenuBox(
                     expanded = expandedType,
-                    onExpandedChange = { expandedType = !expandedType }
+                    onExpandedChange = { expandedType = !expandedType },
                 ) {
                     TextField(
                         readOnly = true,
@@ -144,12 +150,12 @@ fun AddDevice(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)
-                            .menuAnchor()
+                            .menuAnchor(MenuAnchorType.PrimaryNotEditable, true),
                     )
                     DropdownMenu(
                         expanded = expandedType,
                         onDismissRequest = { expandedType = false },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         deviceTypes.forEach { type ->
                             DropdownMenuItem(
@@ -157,7 +163,7 @@ fun AddDevice(
                                 onClick = {
                                     selectedDeviceType = type.type
                                     expandedType = false
-                                }
+                                },
                             )
                         }
                     }
@@ -168,7 +174,7 @@ fun AddDevice(
             item {
                 ExposedDropdownMenuBox(
                     expanded = expandedAssignee,
-                    onExpandedChange = { expandedAssignee = !expandedAssignee }
+                    onExpandedChange = { expandedAssignee = !expandedAssignee },
                 ) {
                     TextField(
                         readOnly = true,
@@ -178,12 +184,12 @@ fun AddDevice(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)
-                            .menuAnchor()
+                            .menuAnchor(MenuAnchorType.PrimaryNotEditable, true),
                     )
                     DropdownMenu(
                         expanded = expandedAssignee,
                         onDismissRequest = { expandedAssignee = false },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         assignees.forEach { assignee ->
                             DropdownMenuItem(
@@ -191,7 +197,7 @@ fun AddDevice(
                                 onClick = {
                                     selectedAssignee = assignee.name
                                     expandedAssignee = false
-                                }
+                                },
                             )
                         }
                     }
@@ -202,7 +208,7 @@ fun AddDevice(
             item {
                 ExposedDropdownMenuBox(
                     expanded = expandedLocation,
-                    onExpandedChange = { expandedLocation = !expandedLocation }
+                    onExpandedChange = { expandedLocation = !expandedLocation },
                 ) {
                     TextField(
                         readOnly = true,
@@ -212,12 +218,12 @@ fun AddDevice(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)
-                            .menuAnchor()
+                            .menuAnchor(MenuAnchorType.PrimaryNotEditable, true),
                     )
                     DropdownMenu(
                         expanded = expandedLocation,
                         onDismissRequest = { expandedLocation = false },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         locations.forEach { location ->
                             DropdownMenuItem(
@@ -225,7 +231,7 @@ fun AddDevice(
                                 onClick = {
                                     selectedLocation = location.location
                                     expandedLocation = false
-                                }
+                                },
                             )
                         }
                     }
@@ -238,19 +244,24 @@ fun AddDevice(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-                    onClick = { datePickerVisible = true }
+                    onClick = { datePickerVisible = true },
                 ) {
                     Text(text = "Select Date")
                 }
             }
 
             item {
+                Modifier.align(Alignment.CenterHorizontally)
                 Text(
-                    text = "Selected Date: ${convertLongDates(selectedDate)}",
+                    text = "Default Selected Date: ${convertLongDates(selectedDate)}",
                     modifier = Modifier
                         .padding(top = 16.dp)
-                        .wrapContentSize(Alignment.Center),
-                    fontSize = 24.sp
+                        .fillMaxWidth()
+                        .wrapContentSize(Alignment.Center)
+                        .align(Alignment.CenterHorizontally),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -271,7 +282,7 @@ fun AddDevice(
                     TextButton(onClick = { datePickerVisible = false }) {
                         Text(text = "No")
                     }
-                }
+                },
             ) {
                 DatePicker(state = rememberDatePickerState())
             }
@@ -282,10 +293,11 @@ fun AddDevice(
         // Create or Update QR button
         OutlinedButton(
             onClick = {
-                if (deviceSerialNo.isNotBlank() && selectedDeviceType.isNotBlank() &&
-                    selectedAssignee.isNotBlank() && selectedLocation.isNotBlank()
+                if (deviceSerialNo.isNotBlank() &&
+                    selectedDeviceType.isNotBlank() &&
+                    selectedAssignee.isNotBlank() &&
+                    selectedLocation.isNotBlank()
                 ) {
-
                     val qrData = "${selectedDeviceType}\n$deviceSerialNo\n$selectedAssignee\n${
                         convertLongDates(selectedDate)
                     }\n$selectedLocation"
@@ -298,22 +310,24 @@ fun AddDevice(
                             deviceAssignee = selectedAssignee,
                             date = convertLongDates(selectedDate),
                             location = selectedLocation,
-                            deviceQr = qrBytes
+                            deviceQr = qrBytes,
                         )
 
                         if (deviceId == null) {
-                            devicesViewModel.addDeviceQr(deviceQr)  // Add new device
+                            devicesViewModel.addDeviceQr(deviceQr) // Add new device
                         } else {
-                            devicesViewModel.updateDeviceQr(deviceQr)  // Update existing device
+                            devicesViewModel.updateDeviceQr(deviceQr) // Update existing device
                         }
 
-                        navController.popBackStack()  // Return to DevicesScreen
+                        navController.popBackStack() // Return to DevicesScreen
                     }
                 }
             },
             modifier = Modifier.fillMaxWidth(),
-            enabled = deviceSerialNo.isNotBlank() && selectedDeviceType.isNotBlank() &&
-                    selectedAssignee.isNotBlank() && selectedLocation.isNotBlank()
+            enabled = deviceSerialNo.isNotBlank() &&
+                selectedDeviceType.isNotBlank() &&
+                selectedAssignee.isNotBlank() &&
+                selectedLocation.isNotBlank(),
         ) {
             Text(if (deviceId == null) "Create QR" else "Update QR")
         }

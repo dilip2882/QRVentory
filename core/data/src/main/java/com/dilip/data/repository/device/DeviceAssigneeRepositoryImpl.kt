@@ -3,11 +3,9 @@ package com.dilip.data.repository.device
 import com.dilip.data.database.DeviceDao
 import com.dilip.domain.models.device.DeviceAssignee
 import com.dilip.domain.repository.device.DeviceAssigneeRepository
-import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
 class DeviceAssigneeRepositoryImpl(
-    private val deviceAssigneeDao: DeviceDao
+    private val deviceAssigneeDao: DeviceDao,
 ) : DeviceAssigneeRepository {
     override suspend fun getAllAssignees(deviceId: Long): List<DeviceAssignee> {
         return deviceAssigneeDao.getAllAssignees(deviceId)

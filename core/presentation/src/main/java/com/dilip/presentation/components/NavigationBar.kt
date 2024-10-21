@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 fun NavBar(
     items: List<NavigationItem>,
     selectedItem: Int,
-    onItemClick: (Int) -> Unit
+    onItemClick: (Int) -> Unit,
 ) {
     NavigationBar {
         items.forEachIndexed { index, item ->
@@ -27,21 +27,23 @@ fun NavBar(
                         Icon(
                             painter = rememberAnimatedVectorPainter(
                                 animatedImageVector = imageVector,
-                                atEnd = index == selectedItem
+                                atEnd = index == selectedItem,
                             ),
-                            contentDescription = null
+                            contentDescription = null,
                         )
                     }
                 },
                 label = {
                     Text(text = item.text, style = MaterialTheme.typography.labelMedium)
-                }
+                },
             )
         }
     }
 }
 
-data class NavigationItem @OptIn(ExperimentalAnimationGraphicsApi::class) constructor(
+data class NavigationItem
+@OptIn(ExperimentalAnimationGraphicsApi::class)
+constructor(
     val icon: AnimatedImageVector?,
-    val text: String
+    val text: String,
 )

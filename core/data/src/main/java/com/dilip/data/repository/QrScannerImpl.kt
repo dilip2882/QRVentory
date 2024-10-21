@@ -25,7 +25,6 @@ class QrScannerImpl @Inject constructor(
                 }
             awaitClose { }
         }
-
     }
 
     private fun getDetails(barcode: Barcode): String {
@@ -89,6 +88,5 @@ class QrScannerImpl @Inject constructor(
                 barcode.rawValue ?: "Couldn't determine"
             }
         }
-
     }
 }

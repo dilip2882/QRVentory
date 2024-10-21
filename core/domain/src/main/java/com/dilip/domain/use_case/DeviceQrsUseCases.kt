@@ -8,7 +8,7 @@ data class DeviceQrsUseCases(
     val addDeviceQr: AddDeviceQr,
     val updateDeviceQr: UpdateDeviceQr,
     val deleteDeviceQr: DeleteDeviceQr,
-    val getAllDeviceQrs: GetAllDeviceQrs
+    val getAllDeviceQrs: GetAllDeviceQrs,
 )
 
 class AddDeviceQr(private val repository: DeviceQrsRepository) {

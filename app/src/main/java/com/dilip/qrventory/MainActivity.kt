@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                 Box(
                     modifier = Modifier
                         .background(color = MaterialTheme.colorScheme.background)
-                        .fillMaxSize()
+                        .fillMaxSize(),
                 ) {
                     RootNavGraph(startDestination = Graph.MainScreenGraph)
                 }
@@ -41,7 +41,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
-
-

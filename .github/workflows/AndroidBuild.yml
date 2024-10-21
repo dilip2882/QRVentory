@@ -1,0 +1,35 @@
+name: AndroidBuild
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build Release App
+    runs-on: ubuntu-latest
+    environment: my-release-key.b64
+
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v4
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: QRVentory.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+

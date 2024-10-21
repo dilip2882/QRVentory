@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DeviceAssigneeViewModel @Inject constructor(
-    private val deviceAssigneeUseCase: DeviceAssigneeUseCases
+    private val deviceAssigneeUseCase: DeviceAssigneeUseCases,
 ) : ViewModel() {
 
     private val _assignees = MutableStateFlow<List<DeviceAssignee>>(emptyList())
@@ -25,7 +25,7 @@ class DeviceAssigneeViewModel @Inject constructor(
 
     private fun loadAssignees() {
         viewModelScope.launch(Dispatchers.IO) {
-            _assignees.value = deviceAssigneeUseCase.getDeviceAssigneesUseCase(1) 
+            _assignees.value = deviceAssigneeUseCase.getDeviceAssigneesUseCase(1)
         }
     }
 

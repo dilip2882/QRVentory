@@ -5,13 +5,10 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
-import kotlinx.coroutines.flow.Flow
-import com.dilip.domain.models.device.Device
 import com.dilip.domain.models.device.DeviceAssignee
 import com.dilip.domain.models.device.DeviceLocation
 import com.dilip.domain.models.device.DeviceType
-import com.dilip.domain.repository.device.DeviceWithDetails
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DeviceDao {
@@ -41,9 +38,8 @@ interface DeviceDao {
     fun getAllTypes(deviceId: Long): Flow<List<DeviceType>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertType(type: DeviceType):  Long
+    suspend fun insertType(type: DeviceType): Long
 
     @Delete
     suspend fun deleteType(type: DeviceType)
-
 }

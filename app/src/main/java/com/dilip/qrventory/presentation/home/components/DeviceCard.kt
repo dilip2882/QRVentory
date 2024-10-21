@@ -21,14 +21,14 @@ fun DeviceCard(navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(top = 12.dp)
+            .padding(top = 12.dp),
     ) {
         Column(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             Text(text = state.value.details)
             Spacer(modifier = Modifier.size(10.dp))

@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
-import androidx.compose.material.icons.filled.Devices
 import androidx.compose.material.icons.filled.DevicesOther
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.LocationOn
@@ -29,15 +28,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.dilip.common.storage.getReadablePathFromUri
 import com.dilip.qrventory.navigation.SettingsRouteScreen
 import com.dilip.qrventory.presentation.settings.components.LogoHeader
 import com.dilip.qrventory.presentation.settings.components.TextPreferenceWidget
-import com.dilip.common.storage.getReadablePathFromUri
 
 @Composable
 fun SettingsScreen(
     rootNavController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -49,7 +48,6 @@ fun SettingsScreen(
     // State for each setting based on ViewModel's preferences
     val storageLocation =
         preferencesSettings?.storageLocation ?: "\"/storage/emulated/0/Downloads\""
-
 
     val pickStorageLocation = storageLocationPicker(viewModel)
     LazyColumn(
@@ -72,7 +70,7 @@ fun SettingsScreen(
                         pickStorageLocation.launch(null)
                     } catch (_: ActivityNotFoundException) {
                     }
-                }
+                },
             )
         }
 
@@ -86,7 +84,7 @@ fun SettingsScreen(
                 icon = Icons.Default.Person,
                 onPreferenceClick = {
                     rootNavController.navigate(SettingsRouteScreen.DeviceAssignee.route)
-                }
+                },
             )
         }
 
@@ -96,7 +94,7 @@ fun SettingsScreen(
                 icon = Icons.Filled.LocationOn,
                 onPreferenceClick = {
                     rootNavController.navigate(SettingsRouteScreen.DeviceLocation.route)
-                }
+                },
             )
         }
 
@@ -106,7 +104,7 @@ fun SettingsScreen(
                 icon = Icons.Filled.DevicesOther,
                 onPreferenceClick = {
                     rootNavController.navigate(SettingsRouteScreen.DeviceType.route)
-                }
+                },
             )
         }
 
@@ -114,14 +112,13 @@ fun SettingsScreen(
             HorizontalDivider()
         }
 
-
         item {
             TextPreferenceWidget(
                 title = "About",
                 icon = Icons.Default.Info,
                 onPreferenceClick = {
                     rootNavController.navigate(SettingsRouteScreen.AboutScreen.route)
-                }
+                },
             )
         }
 
@@ -131,7 +128,7 @@ fun SettingsScreen(
                 icon = Icons.AutoMirrored.Filled.Help,
                 onPreferenceClick = {
                     uriHandler.openUri("https://github.com/dilip2882/QRVentory/blob/main/README.md")
-                }
+                },
             )
         }
     }
@@ -145,7 +142,7 @@ fun storageLocationPicker(viewModel: SettingsViewModel): ManagedActivityResultLa
     ) { uri ->
         if (uri != null) {
             val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
-                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 
             // For some reason InkBook devices do not implement the SAF properly. Persistable URI grants do not
             // work. However, simply retrieving the URI and using it works fine for these devices. Access is not

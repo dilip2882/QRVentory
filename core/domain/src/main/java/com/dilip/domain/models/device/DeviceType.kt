@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class DeviceType(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val deviceId: Long, // Foreign key to Device
-    val type: String
+    val type: String,
 )

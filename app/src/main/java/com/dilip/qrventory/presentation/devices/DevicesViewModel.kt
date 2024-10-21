@@ -1,8 +1,6 @@
 package com.dilip.qrventory.presentation.devices
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.dilip.domain.models.device.DeviceQrs
 import com.dilip.domain.use_case.DeviceQrsUseCases
@@ -16,13 +14,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DevicesViewModel @Inject constructor(
-    private val deviceQrsUseCases: DeviceQrsUseCases
+    private val deviceQrsUseCases: DeviceQrsUseCases,
 ) : ViewModel() {
 
     val devicesQr: StateFlow<List<DeviceQrs>> = deviceQrsUseCases.getAllDeviceQrs().stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = emptyList()
+        initialValue = emptyList(),
     )
 
     fun addDeviceQr(deviceQr: DeviceQrs) {
@@ -39,4 +37,3 @@ class DevicesViewModel @Inject constructor(
         deviceQrsUseCases.deleteDeviceQr(deviceQr)
     }
 }
-

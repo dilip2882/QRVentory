@@ -11,7 +11,7 @@ data class DeviceQrs(
     val deviceAssignee: String,
     val date: String,
     val location: String,
-    val deviceQr: ByteArray? = null
+    val deviceQr: ByteArray? = null,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -28,7 +28,9 @@ data class DeviceQrs(
         if (deviceQr != null) {
             if (other.deviceQr == null) return false
             if (!deviceQr.contentEquals(other.deviceQr)) return false
-        } else if (other.deviceQr != null) return false
+        } else if (other.deviceQr != null) {
+            return false
+        }
 
         return true
     }

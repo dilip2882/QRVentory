@@ -52,7 +52,7 @@ fun extractMetadata(context: Context, uri: Uri): FileMetadata {
         fileName = fileName,
         fileSize = fileSize,
         uri = uri.toString(),
-        mimeType = fileType
+        mimeType = fileType,
     )
 }
 
@@ -83,7 +83,7 @@ private fun getPathFromTreeUri(uri: Uri): String {
             // Convert "primary:" to "/storage/emulated/0/" for primary storage
             decodedPath.replaceFirst(
                 "content://com.android.externalstorage.documents/tree/primary:",
-                "/storage/emulated/0/"
+                "/storage/emulated/0/",
             )
                 .replaceFirst("/document/primary:", "")
         }
