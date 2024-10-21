@@ -2,7 +2,7 @@ name: CI
 on: [pull_request]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
@@ -38,13 +38,18 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Build app and check formatting
-        run: ./gradlew spotlessCheck assembleDevDebug
+      - name: Build app and run unit tests
+        run: ./gradlew spotlessCheck assembleStandardRelease testReleaseUnitTest testStandardReleaseUnitTest
         continue-on-error: true  # Ignore errors
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: QRVentory-${{ github.sha }}.apk
+          name: arm64-v8a-${{ github.sha }}
           path: app/build/outputs/apk/release/app-release.apk
 
+      - name: Upload mapping
+        uses: actions/upload-artifact@v4
+        with:
+          name: mapping-${{ github.sha }}
+          path: app/build/outputs/mapping/release

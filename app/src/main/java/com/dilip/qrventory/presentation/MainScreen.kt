@@ -63,8 +63,8 @@ fun MainScreen(
     // Hide the bottom navigation when the user is in the details screen
     val isBarVisible = remember(key1 = backStackState) {
         backStackState?.destination?.route == MainRouteScreen.HomeScreen.route ||
-                backStackState?.destination?.route == MainRouteScreen.DevicesScreen.route ||
-                backStackState?.destination?.route == MainRouteScreen.SettingsScreen.route
+            backStackState?.destination?.route == MainRouteScreen.DevicesScreen.route ||
+            backStackState?.destination?.route == MainRouteScreen.SettingsScreen.route
     }
 
     Scaffold(

@@ -53,6 +53,18 @@ jobs:
           echo "KEY_STORE_PASSWORD exists: ${{ secrets.KEY_STORE_PASSWORD != '' }}"
           echo "KEY_PASSWORD exists: ${{ secrets.KEY_PASSWORD != '' }}"
 
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: arm64-v8a-${{ github.sha }}
+          path: app/build/outputs/apk/release/app-release.apk
+
+      - name: Upload Mapping
+        uses: actions/upload-artifact@v4
+        with:
+          name: mapping-${{ github.sha }}
+          path: app/build/outputs/mapping/release
+
       - name: List APK Directory
         run: ls app/build/outputs/apk/release/
 
@@ -75,7 +87,7 @@ jobs:
             ["QRVentory-x86_64.apk"]="app-standard-x86_64-release-unsigned-signed.apk"
           )
           for apk in "${!APKS[@]}"; do
-            cp app/build/outputs/apk/standard/release/${APKS[$apk]} $apk
+            cp app/build/outputs/apk/release/${APKS[$apk]} $apk
             sha=$(sha256sum $apk | awk '{ print $1 }')
             echo "${apk^^}_SHA=$sha" >> $GITHUB_ENV
           done
