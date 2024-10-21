@@ -95,6 +95,7 @@ fun DeviceAssigneeScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 8.dp),
+                        singleLine = true,
                     )
                     Text(
                         "*required",

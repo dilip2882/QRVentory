@@ -132,7 +132,7 @@ fun AddDevice(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-
+                    singleLine = true,
                 )
             }
 
