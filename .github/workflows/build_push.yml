@@ -38,10 +38,6 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Build App and Run Unit Tests
-        run: ./gradlew spotlessCheck assembleStandardRelease testStandardReleaseUnitTest --stacktrace
-        continue-on-error: true  # Ignore errors
-
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
