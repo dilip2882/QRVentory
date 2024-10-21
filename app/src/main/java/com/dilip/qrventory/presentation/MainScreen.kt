@@ -16,8 +16,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -27,7 +25,6 @@ import com.dilip.presentation.components.NavBar
 import com.dilip.presentation.components.NavigationItem
 import com.dilip.qrventory.navigation.MainNavGraph
 import com.dilip.qrventory.navigation.MainRouteScreen
-import com.dilip.qrventory.presentation.home.HomeViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -66,16 +63,9 @@ fun MainScreen(
     // Hide the bottom navigation when the user is in the details screen
     val isBarVisible = remember(key1 = backStackState) {
         backStackState?.destination?.route == MainRouteScreen.HomeScreen.route ||
-            backStackState?.destination?.route == MainRouteScreen.DevicesScreen.route ||
-            backStackState?.destination?.route == MainRouteScreen.SettingsScreen.route
+                backStackState?.destination?.route == MainRouteScreen.DevicesScreen.route ||
+                backStackState?.destination?.route == MainRouteScreen.SettingsScreen.route
     }
-
-    val isPullRefreshEnabled = remember(key1 = backStackState) {
-        backStackState?.destination?.route == MainRouteScreen.HomeScreen.route
-    }
-
-    val viewModel: HomeViewModel = hiltViewModel()
-    val context = LocalContext.current
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
