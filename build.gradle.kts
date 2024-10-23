@@ -1,5 +1,6 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
+import org.jetbrains.kotlin.fir.declarations.builder.buildScript
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
@@ -7,6 +8,9 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+    }
+    dependencies {
+        classpath("com.google.gms:google-services:4.3.10") // Make sure this is the correct version
     }
 }
 
@@ -18,6 +22,7 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.kotlin.serialization) apply false
+    id("com.google.gms.google-services") version "4.4.2" apply false
     // Spotless plugin
     alias(libs.plugins.spotless) apply false
 }

@@ -298,14 +298,9 @@ fun AddDevice(
                     selectedAssignee.isNotBlank() &&
                     selectedLocation.isNotBlank()
                 ) {
-                    val qrData = " Device Type: $selectedDeviceType" +
-                        "\n Serial No: $deviceSerialNo" +
-                        "\n Assignee: $selectedAssignee" +
-                        "\n Date: ${
-                            convertLongDates(selectedDate)
-                        }" +
-                        "\n Location: $selectedLocation"
-
+                    val qrData = "${selectedDeviceType}\n$deviceSerialNo\n$selectedAssignee\n${
+                        convertLongDates(selectedDate)
+                    }\n$selectedLocation"
                     qrCodeGenerated = generateQrCode(qrData)
                     qrCodeGenerated?.let {
                         val qrBytes = bitmapToByteArray(it)

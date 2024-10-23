@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "330850719229",
+    "firebase_url": "https://qrventory-default-rtdb.firebaseio.com",
+    "project_id": "qrventory",
+    "storage_bucket": "qrventory.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330850719229:android:02c936b2f5a237d91f7594",
+        "android_client_info": {
+          "package_name": "com.dilip.qrventory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDqZdsBjwGKiPPvGEfO-cwlLsx04MtVmo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

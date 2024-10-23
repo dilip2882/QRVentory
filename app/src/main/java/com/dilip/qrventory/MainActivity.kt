@@ -14,6 +14,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.dilip.qrventory.navigation.Graph
 import com.dilip.qrventory.navigation.graphs.RootNavGraph
 import com.dilip.qrventory.ui.theme.QRVentoryTheme
+import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         installSplashScreen().apply {
             setKeepOnScreenCondition {
                 viewModel.splashCondition
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         .background(color = MaterialTheme.colorScheme.background)
                         .fillMaxSize(),
                 ) {
-                    RootNavGraph(startDestination = Graph.MainScreenGraph)
+                    RootNavGraph(startDestination = Graph.AuthenticationGraph)
                 }
             }
         }

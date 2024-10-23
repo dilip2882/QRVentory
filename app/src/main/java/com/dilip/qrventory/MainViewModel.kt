@@ -21,12 +21,12 @@ class MainViewModel @Inject constructor(
     var splashCondition by mutableStateOf(true)
         private set
 
-    private var startDestination by mutableStateOf(Graph.MainScreenGraph)
+    private var startDestination by mutableStateOf(Graph.AuthenticationGraph)
 
     init {
         Log.d("MainViewModel", "ViewModel initialized")
         viewModelScope.launch {
-            Graph.MainScreenGraph
+            Graph.AuthenticationGraph
             splashCondition = true
         }
     }
