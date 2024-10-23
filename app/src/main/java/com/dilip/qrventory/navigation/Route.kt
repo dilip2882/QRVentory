@@ -5,6 +5,7 @@ object Graph {
     const val MainScreenGraph = "mainScreenGraph"
     const val SettingsGraph = "settingsGraph"
     const val DevicesGraph = "devicesGraph"
+    const val AuthenticationGraph = "authenticationGraph"
 }
 
 sealed class MainRouteScreen(var route: String) {
