@@ -1,10 +1,10 @@
-package com.dilip.domain.models.device
+package com.dilip.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "device_qrs")
-data class DeviceQrs(
+data class DeviceQrEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val deviceType: String,
     val deviceSN: String,
@@ -17,7 +17,7 @@ data class DeviceQrs(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as DeviceQrs
+        other as DeviceQrEntity
 
         if (id != other.id) return false
         if (deviceType != other.deviceType) return false

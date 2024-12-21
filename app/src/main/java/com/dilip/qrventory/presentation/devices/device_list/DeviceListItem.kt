@@ -22,12 +22,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.dilip.domain.models.device.DeviceQrs
+import com.dilip.domain.models.device.DeviceQr
 import com.dilip.qrventory.presentation.devices.byteArrayToBitmap
 
 @Composable
 fun DeviceListItem(
-    device: DeviceQrs,
+    device: DeviceQr,
     onEditClick: () -> Unit,
     onDeleteClick: () -> Unit,
     onQrClick: () -> Unit,
@@ -100,7 +100,7 @@ fun DeviceListItem(
 @Composable
 fun DeviceListItemPreview() {
     DeviceListItem(
-        device = DeviceQrs(
+        device = DeviceQr(
             deviceType = "Camera",
             deviceSN = "SN123456",
             deviceAssignee = "John Doe",

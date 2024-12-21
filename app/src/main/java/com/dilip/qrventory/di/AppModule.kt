@@ -5,17 +5,17 @@ import android.content.Context
 import androidx.room.Room
 import com.dilip.data.database.DeviceDao
 import com.dilip.data.database.DeviceDatabase
-import com.dilip.data.database.DeviceQrsDao
-import com.dilip.data.database.DeviceQrsDatabase
+import com.dilip.data.database.DeviceQrDao
+import com.dilip.data.database.DeviceQrDatabase
 import com.dilip.data.repository.PreferencesDatastore
 import com.dilip.data.repository.device.DeviceAssigneeRepositoryImpl
 import com.dilip.data.repository.device.DeviceLocationRepositoryImpl
-import com.dilip.data.repository.device.DeviceQrsRepositoryImpl
+import com.dilip.data.repository.device.DeviceQrRepositoryImpl
 import com.dilip.data.repository.device.DeviceTypeRepositoryImpl
 import com.dilip.domain.repository.PreferencesRepository
 import com.dilip.domain.repository.device.DeviceAssigneeRepository
 import com.dilip.domain.repository.device.DeviceLocationRepository
-import com.dilip.domain.repository.device.DeviceQrsRepository
+import com.dilip.domain.repository.device.DeviceQrRepository
 import com.dilip.domain.repository.device.DeviceTypeRepository
 import com.dilip.domain.use_case.AddDeviceQr
 import com.dilip.domain.use_case.DeleteDeviceQr
@@ -24,6 +24,7 @@ import com.dilip.domain.use_case.DeviceLocationUseCases
 import com.dilip.domain.use_case.DeviceQrsUseCases
 import com.dilip.domain.use_case.DeviceTypeUseCases
 import com.dilip.domain.use_case.GetAllDeviceQrs
+import com.dilip.domain.use_case.GetDeviceQrById
 import com.dilip.domain.use_case.UpdateDeviceQr
 import com.dilip.domain.use_case.device_assignee.AddDeviceAssigneeUseCase
 import com.dilip.domain.use_case.device_assignee.DeleteDeviceAssigneeUseCase
@@ -150,34 +151,35 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDeviceQrsDatabase(app: Application): DeviceQrsDatabase {
+    fun provideDeviceQrsDatabase(app: Application): DeviceQrDatabase {
         return Room.databaseBuilder(
             app,
-            DeviceQrsDatabase::class.java,
+            DeviceQrDatabase::class.java,
             "device_qrs_db",
         ).build()
     }
 
     @Provides
     @Singleton
-    fun provideDeviceQrsDao(db: DeviceQrsDatabase): DeviceQrsDao {
-        return db.deviceQrsDao()
+    fun provideDeviceQrsDao(db: DeviceQrDatabase): DeviceQrDao {
+        return db.deviceQrDao()
     }
 
     @Provides
     @Singleton
-    fun provideDeviceQrsRepository(dao: DeviceQrsDao): DeviceQrsRepository {
-        return DeviceQrsRepositoryImpl(dao)
+    fun provideDeviceQrsRepository(dao: DeviceQrDao): DeviceQrRepository {
+        return DeviceQrRepositoryImpl(dao)
     }
 
     @Provides
     @Singleton
-    fun provideDeviceQrsUseCases(repository: DeviceQrsRepository): DeviceQrsUseCases {
+    fun provideDeviceQrsUseCases(repository: DeviceQrRepository): DeviceQrsUseCases {
         return DeviceQrsUseCases(
             addDeviceQr = AddDeviceQr(repository),
             updateDeviceQr = UpdateDeviceQr(repository),
             deleteDeviceQr = DeleteDeviceQr(repository),
             getAllDeviceQrs = GetAllDeviceQrs(repository),
+            getDeviceQrById = GetDeviceQrById(repository),
         )
     }
 }

@@ -1,7 +1,7 @@
 package com.dilip.domain.use_case
 
-import com.dilip.domain.models.device.DeviceQrs
-import com.dilip.domain.repository.device.DeviceQrsRepository
+import com.dilip.domain.models.device.DeviceQr
+import com.dilip.domain.repository.device.DeviceQrRepository
 import kotlinx.coroutines.flow.Flow
 
 data class DeviceQrsUseCases(
@@ -9,28 +9,35 @@ data class DeviceQrsUseCases(
     val updateDeviceQr: UpdateDeviceQr,
     val deleteDeviceQr: DeleteDeviceQr,
     val getAllDeviceQrs: GetAllDeviceQrs,
+    val getDeviceQrById: GetDeviceQrById,
 )
 
-class AddDeviceQr(private val repository: DeviceQrsRepository) {
-    suspend operator fun invoke(deviceQr: DeviceQrs) {
+class AddDeviceQr(private val repository: DeviceQrRepository) {
+    suspend operator fun invoke(deviceQr: DeviceQr) {
         repository.insertDeviceQr(deviceQr)
     }
 }
 
-class UpdateDeviceQr(private val repository: DeviceQrsRepository) {
-    suspend operator fun invoke(deviceQr: DeviceQrs) {
+class UpdateDeviceQr(private val repository: DeviceQrRepository) {
+    suspend operator fun invoke(deviceQr: DeviceQr) {
         repository.updateDeviceQr(deviceQr)
     }
 }
 
-class DeleteDeviceQr(private val repository: DeviceQrsRepository) {
-    suspend operator fun invoke(deviceQr: DeviceQrs) {
+class DeleteDeviceQr(private val repository: DeviceQrRepository) {
+    suspend operator fun invoke(deviceQr: DeviceQr) {
         repository.deleteDeviceQr(deviceQr)
     }
 }
 
-class GetAllDeviceQrs(private val repository: DeviceQrsRepository) {
-    operator fun invoke(): Flow<List<DeviceQrs>> {
+class GetAllDeviceQrs(private val repository: DeviceQrRepository) {
+    operator fun invoke(): Flow<List<DeviceQr>> {
         return repository.getAllDeviceQrs()
+    }
+}
+
+class GetDeviceQrById(private val repository: DeviceQrRepository) {
+    operator fun invoke(id: Int): Flow<DeviceQr?> {
+        return repository.getDeviceQrById(id)
     }
 }
