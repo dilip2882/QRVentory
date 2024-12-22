@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.compose.rememberNavController
 import com.dilip.qrventory.navigation.Graph
 import com.dilip.qrventory.navigation.graphs.RootNavGraph
 import com.dilip.qrventory.ui.theme.QRVentoryTheme
@@ -30,6 +31,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             QRVentoryTheme {
+                val navController = rememberNavController()
                 Box(
                     modifier = Modifier
                         .background(color = MaterialTheme.colorScheme.background)

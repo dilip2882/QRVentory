@@ -1,6 +1,6 @@
 package com.dilip.data.repository.device
 
-import com.dilip.data.database.DeviceDao
+import com.dilip.data.local.database.DeviceDao
 import com.dilip.domain.models.device.DeviceAssignee
 import com.dilip.domain.repository.device.DeviceAssigneeRepository
 

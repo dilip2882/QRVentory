@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.spotless) apply false
+    alias(libs.plugins.google.gms.google.services)
 }
 
 val supportedAbis = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
@@ -91,6 +92,7 @@ dependencies {
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.firebase.firestore)
     ksp(libs.hilt.compiler)
 
     // Room components
@@ -99,11 +101,13 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     androidTestImplementation(libs.androidx.room.testing)
 
-    // Firebase
+    // firebase
     implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.firestore)
-    implementation(libs.firebase.ui.auth)
+    implementation(libs.firebase.analytics.ktx)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.google.firebase.auth.ktx)
+    implementation(libs.play.services.auth)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

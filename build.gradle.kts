@@ -20,6 +20,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     // Spotless plugin
     alias(libs.plugins.spotless) apply false
+    alias(libs.plugins.google.gms.google.services) apply false
 }
 
 val ktlintVersion = libs.versions.ktlint.get()

@@ -46,6 +46,14 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     androidTestImplementation(libs.androidx.room.testing)
 
+    // firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics.ktx)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.google.firebase.auth.ktx)
+    implementation(libs.play.services.auth)
+
     // Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose.android)

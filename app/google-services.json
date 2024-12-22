@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "82676785801",
+    "firebase_url": "https://begloce-default-rtdb.firebaseio.com",
+    "project_id": "begloce",
+    "storage_bucket": "begloce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82676785801:android:13e3159d16bef97440dc58",
+        "android_client_info": {
+          "package_name": "com.dilip.qrventory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82676785801-nsvl9ojfd0j2mhdfnrq652j2nmb1nrlt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dilip.qrventory",
+            "certificate_hash": "1dd4deb960d9e5a349d2111f0dd26342abdcd986"
+          }
+        },
+        {
+          "client_id": "82676785801-ajaaqdui40pkd801dq1g7u4sn8okrokg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy23yw-KkG5ReswYNvEJue55Wdy9s2FtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82676785801-ajaaqdui40pkd801dq1g7u4sn8okrokg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

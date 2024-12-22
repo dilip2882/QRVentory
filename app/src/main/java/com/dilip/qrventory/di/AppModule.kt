@@ -3,19 +3,20 @@ package com.dilip.qrventory.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.dilip.data.database.DeviceDao
-import com.dilip.data.database.DeviceDatabase
-import com.dilip.data.database.DeviceQrsDao
-import com.dilip.data.database.DeviceQrsDatabase
+import com.dilip.data.local.database.DeviceDao
+import com.dilip.data.local.database.DeviceDatabase
+import com.dilip.data.local.database.DeviceQrDao
+import com.dilip.data.local.database.DeviceQrsDatabase
+import com.dilip.data.remote.FirebaseDeviceQrDataSource
 import com.dilip.data.repository.PreferencesDatastore
 import com.dilip.data.repository.device.DeviceAssigneeRepositoryImpl
 import com.dilip.data.repository.device.DeviceLocationRepositoryImpl
-import com.dilip.data.repository.device.DeviceQrsRepositoryImpl
+import com.dilip.data.repository.device.DeviceQrRepositoryImpl
 import com.dilip.data.repository.device.DeviceTypeRepositoryImpl
 import com.dilip.domain.repository.PreferencesRepository
 import com.dilip.domain.repository.device.DeviceAssigneeRepository
 import com.dilip.domain.repository.device.DeviceLocationRepository
-import com.dilip.domain.repository.device.DeviceQrsRepository
+import com.dilip.domain.repository.device.DeviceQrRepository
 import com.dilip.domain.repository.device.DeviceTypeRepository
 import com.dilip.domain.use_case.AddDeviceQr
 import com.dilip.domain.use_case.DeleteDeviceQr
@@ -34,6 +35,7 @@ import com.dilip.domain.use_case.device_location.GetDeviceLocationsUseCase
 import com.dilip.domain.use_case.device_type.AddDeviceTypeUseCase
 import com.dilip.domain.use_case.device_type.DeleteDeviceTypeUseCase
 import com.dilip.domain.use_case.device_type.GetDeviceTypesUseCase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
@@ -160,19 +162,25 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDeviceQrsDao(db: DeviceQrsDatabase): DeviceQrsDao {
+    fun provideDeviceQrsDao(db: DeviceQrsDatabase): DeviceQrDao {
         return db.deviceQrsDao()
     }
 
     @Provides
     @Singleton
-    fun provideDeviceQrsRepository(dao: DeviceQrsDao): DeviceQrsRepository {
-        return DeviceQrsRepositoryImpl(dao)
+    fun provideFirebaseDeviceQrDataSource(firestore: FirebaseFirestore): FirebaseDeviceQrDataSource {
+        return FirebaseDeviceQrDataSource(firestore)
     }
 
     @Provides
     @Singleton
-    fun provideDeviceQrsUseCases(repository: DeviceQrsRepository): DeviceQrsUseCases {
+    fun provideDeviceQrsRepository(dao: DeviceQrDao, firebaseDeviceQrDataSource: FirebaseDeviceQrDataSource): DeviceQrRepository {
+        return DeviceQrRepositoryImpl(localDataSource = dao, remoteDataSource = firebaseDeviceQrDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeviceQrsUseCases(repository: DeviceQrRepository): DeviceQrsUseCases {
         return DeviceQrsUseCases(
             addDeviceQr = AddDeviceQr(repository),
             updateDeviceQr = UpdateDeviceQr(repository),

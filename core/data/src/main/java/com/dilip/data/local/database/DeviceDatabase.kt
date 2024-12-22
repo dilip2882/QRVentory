@@ -1,4 +1,4 @@
-package com.dilip.data.database
+package com.dilip.data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

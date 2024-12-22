@@ -2,9 +2,15 @@ package com.dilip.qrventory.navigation
 
 object Graph {
     const val RootGraph = "rootGraph"
+    const val AuthGraph = "authGraph"
     const val MainScreenGraph = "mainScreenGraph"
     const val SettingsGraph = "settingsGraph"
     const val DevicesGraph = "devicesGraph"
+}
+
+sealed class AuthRouteScreen(var route: String) {
+    data object AuthScreen : AuthRouteScreen("auth")
+    data object ProfileScreen : AuthRouteScreen("profile")
 }
 
 sealed class MainRouteScreen(var route: String) {

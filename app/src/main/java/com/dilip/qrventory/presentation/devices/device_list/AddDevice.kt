@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.dilip.domain.models.device.DeviceQrs
+import com.dilip.domain.models.device.DeviceQr
 import com.dilip.qrventory.presentation.devices.DevicesViewModel
 import com.dilip.qrventory.presentation.devices.components.generateQrCode
 import com.dilip.qrventory.presentation.settings.device_assignee.DeviceAssigneeViewModel
@@ -309,7 +309,7 @@ fun AddDevice(
                     qrCodeGenerated = generateQrCode(qrData)
                     qrCodeGenerated?.let {
                         val qrBytes = bitmapToByteArray(it)
-                        val deviceQr = DeviceQrs(
+                        val deviceQr = DeviceQr(
                             deviceType = selectedDeviceType,
                             deviceSN = deviceSerialNo,
                             deviceAssignee = selectedAssignee,

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">QRVentory</string>
+
+    <string name="web_client_id">873979809204-a9rglmu8vm5ht2i7f40ci2occacq2vfl.apps.googleusercontent.com</string>
+
     <string name="username_hint">Name</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>

@@ -1,4 +1,4 @@
-package com.dilip.data.database
+package com.dilip.data.local.database
 
 import androidx.room.Dao
 import androidx.room.Delete

@@ -44,9 +44,10 @@ cameraView = "1.3.4"
 cameraLifecycle = "1.3.4"
 firebaseCrashlyticsBuildtools = "3.0.2"
 
-firebaseBom = "33.1.2"
-firebaseUiAuth = "7.2.0"
-firebaseAuthKtx = "23.0.0"
+firebaseBomVersion = "33.7.0"
+googleGmsGoogleServices = "4.4.2"
+firebaseFirestore = "25.1.1"
+firebaseUiAuth = "8.0.0"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -103,10 +104,13 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 
 # firebase
-firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
-firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
+firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-database-ktx = { module = "com.google.firebase:firebase-database-ktx" }
+firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx" }
+google-firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
 firebase-ui-auth = { module = "com.firebaseui:firebase-ui-auth", version.ref = "firebaseUiAuth" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth" }
 
 # qr scan using google lens
 # https://developers.google.com/ml-kit/vision/barcode-scanning/code-scanner
@@ -138,6 +142,7 @@ kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.
 androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraView" }
 androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraLifecycle" }
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
 
 [plugins]
@@ -150,6 +155,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 
 
 [bundles]

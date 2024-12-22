@@ -2,7 +2,7 @@ package com.dilip.qrventory.presentation.devices
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dilip.domain.models.device.DeviceQrs
+import com.dilip.domain.models.device.DeviceQr
 import com.dilip.domain.use_case.DeviceQrsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,23 +17,23 @@ class DevicesViewModel @Inject constructor(
     private val deviceQrsUseCases: DeviceQrsUseCases,
 ) : ViewModel() {
 
-    val devicesQr: StateFlow<List<DeviceQrs>> = deviceQrsUseCases.getAllDeviceQrs().stateIn(
+    val devicesQr: StateFlow<List<DeviceQr>> = deviceQrsUseCases.getAllDeviceQrs().stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = emptyList(),
     )
 
-    fun addDeviceQr(deviceQr: DeviceQrs) {
+    fun addDeviceQr(deviceQr: DeviceQr) {
         viewModelScope.launch(Dispatchers.IO) {
             deviceQrsUseCases.addDeviceQr(deviceQr)
         }
     }
 
-    fun updateDeviceQr(deviceQr: DeviceQrs) = viewModelScope.launch {
+    fun updateDeviceQr(deviceQr: DeviceQr) = viewModelScope.launch {
         deviceQrsUseCases.updateDeviceQr(deviceQr)
     }
 
-    fun deleteDeviceQr(deviceQr: DeviceQrs) = viewModelScope.launch {
+    fun deleteDeviceQr(deviceQr: DeviceQr) = viewModelScope.launch {
         deviceQrsUseCases.deleteDeviceQr(deviceQr)
     }
 }
